@@ -172,7 +172,9 @@
 
   /* ===== hub de queixa (/laser) e lista de procedimento (/estetica, /contracepcao) =====
      fio entre itens, nao caixa: sao itens de indice, nao produtos. */
-  .queixa{display:block;border-top:1px solid var(--linha);padding:var(--s5) 0;text-decoration:none;}
+  /* item de indice, nao link: as seis queixas vivem nesta pagina, e as chips do
+     hero ancoram nos ids. scroll-margin poe o titulo abaixo da nav sticky. */
+  .queixa{display:block;border-top:1px solid var(--linha);padding:var(--s5) 0;scroll-margin-top:88px;}
   .queixa:first-of-type{margin-top:var(--s6);}
   .queixa h3{font-family:var(--serif);font-weight:400;font-size:clamp(20px,4.6vw,23px);color:var(--vinho);margin:0 0 var(--s3);text-wrap:pretty;}
   .queixa p{font-size:16px;line-height:1.65;color:var(--tinta-soft);max-width:var(--medida);margin:0;text-wrap:pretty;}
@@ -180,11 +182,6 @@
   .queixa .nome{color:var(--tinta);}
   .queixa .nome b{font-weight:700;}
   .queixa p + p{margin-top:var(--s3);}
-  .queixa .ir{display:inline-flex;align-items:center;gap:7px;margin-top:var(--s4);
-    color:var(--coral-texto);font-weight:700;font-size:15px;}
-  .queixa .ir::after{content:"→";transition:transform .18s cubic-bezier(.22,1,.36,1);}
-  .queixa:hover h3{color:var(--coral-texto);}
-  .queixa:hover .ir::after{transform:translateX(4px);}
 
   .proc{border-top:1px solid var(--linha);padding:var(--s5) 0;}
   .proc:first-of-type{margin-top:var(--s6);}
@@ -278,7 +275,7 @@
   @media (prefers-reduced-motion:reduce){
     *{scroll-behavior:auto!important;animation-duration:.01ms!important;transition-duration:.01ms!important;}
     .porta:hover,.cta:hover{transform:none;}
-    .porta:hover .ir::after,.queixa:hover .ir::after{transform:none;}
+    .porta:hover .ir::after{transform:none;}
   }
 
   /* ===== desktop ===== */
@@ -299,10 +296,28 @@
     .sobre .grid{display:grid;grid-template-columns:.82fr 1.18fr;gap:clamp(32px,4.5vw,56px);align-items:start;}
     .sobre .foto{margin-bottom:0;}
     .local{grid-template-columns:repeat(2,1fr);gap:clamp(28px,4vw,48px);}
-    .faq{max-width:860px;}
     .passos p{padding:var(--s6) 0;font-size:18px;}
     .comfoto .grid{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(32px,4.5vw,56px);align-items:start;}
     .comfoto .lado{margin-top:0;}
+    /* ===== gramatica de duas colunas do desktop =====
+       o site inteiro fala 40/60: .queixa, .proc e o bloco "sobre". quatro blocos
+       ficavam de fora em coluna unica de 58% a 75%, com o h2 esticando 400px alem
+       do corpo que ele apresenta: lia como container que nao encheu, nao como
+       assimetria composta. o h2 vira ancora da coluna da esquerda e o corpo ocupa
+       a da direita, onde .6fr da ~62ch, a mesma --medida de antes. */
+    .duas{display:grid;grid-template-columns:.4fr .6fr;gap:clamp(28px,4vw,56px);align-items:start;}
+    .duas > h2{grid-column:1;grid-row:1;}
+    .duas > :not(h2){grid-column:2;max-width:none;}
+    .duas > :not(h2):first-of-type{margin-top:0;}
+    /* o FAQ e alto demais pra deixar 40% vazio ao lado: quem desce pra coluna da
+       esquerda e o rotulo do grupo, que e o que a paciente escaneia. */
+    .faq{max-width:none;}
+    /* so column-gap: gap solto poria 50px entre cada pergunta, porque cada
+       details e uma linha da grade. o fio entre perguntas e o separador. */
+    .grupo{display:grid;grid-template-columns:.4fr .6fr;
+      column-gap:clamp(28px,4vw,56px);row-gap:0;align-items:start;}
+    .grupo > h3{grid-column:1;grid-row:1;margin-bottom:0;padding-top:15px;}
+    .grupo > details{grid-column:2;}
     .queixa{display:grid;grid-template-columns:.4fr .6fr;gap:clamp(28px,4vw,56px);align-items:start;padding:var(--s6) 0;}
     .queixa h3{margin:0;}
     .proc{display:grid;grid-template-columns:.4fr .6fr;gap:clamp(28px,4vw,56px);align-items:start;padding:var(--s5) 0;}
@@ -451,7 +466,7 @@
 </section>
 
 <section class="block ar bg-nude">
-  <div class="wrap">
+  <div class="wrap duas">
     <h2>O pré-natal</h2>
     <p class="lead">As consultas seguem o calendário do seu caso, não um pacote fechado.</p>
     <div class="passos">
