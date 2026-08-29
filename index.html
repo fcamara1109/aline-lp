@@ -39,6 +39,11 @@
        texto usa a versao escurecida da mesma matiz. ver guia-marca-aline.md */
     --coral-texto:#9B4F4D;--terra-texto:#776053;--apoio:#6E574F;
     --tinta:#2E1A22;--tinta-soft:#4A3038;
+    /* fios. --linha era usada sem existir: todo filete do corpo (portas, queixas,
+       procedimentos, chips) sumia calado. */
+    --linha:#E7D6CD;--linha-card:#EEDFD7;--linha-vinho:rgba(201,162,140,.3);
+    /* medida de leitura. prosa solta corria 130 caracteres no desktop. */
+    --medida:62ch;
     /* escala de espaco 4pt. valor fora dela e bug, nao escolha. */
     --s2:8px;--s3:12px;--s4:16px;--s5:24px;--s6:32px;--s7:48px;--s8:64px;
     --z-nav:40;--z-flutuante:45;--z-modal:60;
@@ -57,14 +62,39 @@
   h1 .hi{color:var(--coral-texto);}
   h2{font-family:var(--serif);font-weight:400;font-size:clamp(26px,5.6vw,38px);line-height:1.15;letter-spacing:-.012em;color:var(--vinho);text-wrap:balance;}
   h3{font-family:var(--serif);font-weight:400;font-size:20px;line-height:1.25;color:var(--vinho);}
-  .lead{font-size:clamp(16px,4.2vw,18.5px);color:var(--tinta-soft);line-height:1.62;max-width:640px;}
+  .lead{font-size:clamp(17px,4.2vw,19px);color:var(--tinta-soft);line-height:1.6;max-width:46ch;}
   .rot{display:block;font-size:13px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--coral-texto);margin-bottom:12px;}
   /* ritmo: nem toda secao respira igual. a lista e o laser sao os folegos longos. */
-  section.block{padding:clamp(48px,9vw,84px) 0;}
-  section.block.ar{padding:clamp(64px,13vw,116px) 0;}
+  section.block{padding:clamp(44px,7.5vw,72px) 0;}
+  section.block.ar{padding:clamp(58px,10vw,100px) 0;}
   section.block.perto{padding:clamp(32px,7vw,52px) 0;}
   .bg-nude{background:var(--nude);} .bg-creme{background:var(--creme);}
   .bg-vinho{background:var(--vinho);}
+
+  /* ===== prosa de bloco =====
+     o corpo do bloco e h2 + lead + paragrafos. sem estas regras o paragrafo herda
+     margin:0 do reset (os paragrafos colam num bloco so) e a largura do wrap
+     (130 caracteres por linha no desktop). era isso que fazia a pagina virar documento. */
+  /* :where() zera a especificidade: estas sao regras de base, qualquer classe as vence. */
+  :where(.block .wrap h2 + *){margin-top:var(--s4);}
+  :where(.block .wrap .lead + p){margin-top:var(--s5);}
+  :where(.block .wrap p){max-width:var(--medida);font-size:16.5px;line-height:1.7;color:var(--tinta-soft);text-wrap:pretty;}
+  :where(.block .wrap p + p){margin-top:var(--s4);}
+  .block .wrap p a{color:var(--coral-texto);font-weight:700;text-decoration:none;
+    border-bottom:1px solid rgba(155,79,77,.35);padding-bottom:1px;}
+  .block .wrap p a:hover{border-bottom-color:var(--coral-texto);}
+  /* remate: a ultima linha do bloco muda de registro pra fechar o assunto.
+     serif, coral, e ar antes dela. e o unico lugar do corpo onde a serif aparece fora de titulo. */
+  .fecha{margin-top:var(--s6);font-family:var(--serif);font-weight:400;
+    font-size:clamp(19px,4.4vw,24px);line-height:1.35;color:var(--coral-texto);
+    max-width:34ch;text-wrap:balance;}
+
+  /* fundo vinho inverte o texto inteiro. sem isto o h2 saia vinho sobre vinho e a
+     secao "O que o laser nao faz" subiu invisivel. */
+  .bg-vinho h2,.bg-vinho h3{color:var(--creme);}
+  .bg-vinho .lead{color:#EBD9CD;}
+  .bg-vinho > .wrap > p{color:var(--terra-no-vinho);line-height:1.75;}
+  .bg-vinho .fecha{color:var(--creme);}
 
   /* CTA: fundo vinho + texto creme = 11,7:1. coral nao vira fundo de botao com texto branco. */
   .cta{display:inline-flex;align-items:center;justify-content:center;gap:11px;
@@ -81,12 +111,15 @@
   .nav{position:sticky;top:0;z-index:var(--z-nav);display:flex;align-items:center;justify-content:space-between;gap:14px;
     padding:11px 20px;background:rgba(247,237,232,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
     border-bottom:1px solid #E7D6CD;}
-  .brand{display:flex;align-items:center;gap:10px;min-width:0;}
+  /* area de toque de 44px sem crescer a barra: pseudo-elemento, nao padding */
+  .brand{position:relative;display:flex;align-items:center;gap:10px;min-width:0;}
+  .brand::before{content:"";position:absolute;inset:-7px -6px;}
   .brand .sym{width:30px;height:30px;flex:0 0 auto;}
   .brand .wm{display:block;font-family:var(--serif);font-weight:400;font-size:18px;line-height:1.15;color:var(--vinho);}
   .brand .tag{display:none;font-size:13px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--terra-texto);}
-  .navcta{flex:0 0 auto;background:var(--vinho);color:var(--creme);font-weight:700;font-size:13.5px;
+  .navcta{position:relative;flex:0 0 auto;background:var(--vinho);color:var(--creme);font-weight:700;font-size:13.5px;
     padding:9px 15px;border-radius:11px;text-decoration:none;border:none;cursor:pointer;font-family:var(--sans);}
+  .navcta::after{content:"";position:absolute;inset:-5px 0;}
   .navcta:hover{background:var(--vinho-d);}
   .navcta .curto{display:inline;} .navcta .longo{display:none;}
 
@@ -105,82 +138,120 @@
   .hero-panel .badge b{display:block;font-family:var(--serif);font-weight:400;font-size:16px;line-height:1.2;color:var(--vinho);}
   .hero-panel .badge span{display:block;font-size:13px;font-weight:700;color:var(--terra-texto);line-height:1.25;}
 
-  /* barra de credencial */
-  .cred{background:var(--vinho);padding:22px 0;}
-  .cred ul{list-style:none;display:grid;gap:13px;}
-  .cred li{display:flex;align-items:flex-start;gap:11px;color:var(--nude);font-size:15px;font-weight:600;line-height:1.45;}
-  .cred li svg{width:19px;height:19px;flex:0 0 auto;margin-top:2px;stroke:var(--coral-claro);}
+  /* barra de credencial. li era flex por causa de um icone que nao existe mais:
+     o <b> virava coluna e a frase quebrava no meio ("Consultas as | segundas-feiras | , com hora marcada"). */
+  .cred{background:var(--vinho);padding:20px 0;}
+  .cred ul{list-style:none;display:grid;gap:10px;}
+  .cred li{color:var(--nude);font-size:15px;font-weight:500;line-height:1.45;}
+  .cred li b{font-weight:800;}
 
-  /* cards */
-  .cards{display:grid;gap:16px;margin-top:26px;}
-  .card{background:var(--creme);border:1px solid #EEDFD7;border-radius:18px;padding:22px 20px;}
-  .card p{margin-top:8px;color:var(--tinta-soft);font-size:15.5px;}
-  .card .num{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:50%;
-    background:var(--coral);color:#fff;font-family:var(--serif);font-size:17px;margin-bottom:12px;}
-
-  /* a lista: as perguntas que nao couberam em 15 minutos */
-  /* a lista e o coracao da pagina: tipografia e regua, nao oito caixinhas */
-  .lista{margin-top:var(--s6);border-top:1px solid #E3D0C6;}
-  .lista li{list-style:none;display:flex;align-items:baseline;gap:var(--s4);
-    padding:var(--s4) 0;border-bottom:1px solid #E3D0C6;
-    font-family:var(--serif);font-weight:400;font-size:clamp(18px,4.6vw,23px);
-    line-height:1.35;color:var(--vinho);text-wrap:pretty;}
-  .lista li::before{content:"";width:7px;height:7px;flex:0 0 auto;border-radius:50%;
-    background:var(--coral);transform:translateY(-4px);}
-  .fecha{margin-top:var(--s6);font-family:var(--serif);font-size:clamp(20px,4.8vw,26px);line-height:1.3;color:var(--coral-texto);}
-
-  /* mecanismo: o que cabe em uma hora */
-  .hora .passo{display:flex;gap:16px;align-items:flex-start;padding:19px 0;border-bottom:1px solid #E7D6CD;}
-  .hora .passo:last-child{border-bottom:none;}
-  .hora .passo .t{flex:0 0 auto;width:62px;font-family:var(--serif);font-size:17px;color:var(--coral-texto);padding-top:2px;}
-  .hora .passo h3{font-size:19px;} .hora .passo p{margin-top:5px;color:var(--tinta-soft);font-size:16px;}
-
-  /* gravidez, a porta de entrada */
-  /* nao e card: e um bloco deslocado, com a regua da marca na lateral */
-  .grav{border-left:4px solid var(--coral);padding-left:clamp(18px,4vw,32px);}
-  .grav p{margin-top:var(--s3);color:var(--tinta-soft);font-size:16.5px;max-width:62ch;}
-
-  /* faixa de foto */
-  .band{position:relative;}
-  .band img{width:100%;height:230px;object-fit:cover;}
-  .band .q{background:var(--vinho);color:var(--nude);padding:26px 0;}
-  .band .q p{font-family:var(--serif);font-size:clamp(19px,4.8vw,26px);line-height:1.32;max-width:760px;}
-
-  /* seção do laser (fundo vinho) */
-  .laser h2{color:var(--creme);} .laser .rot{color:var(--coral-claro);}
-  .laser .lead{color:var(--terra-no-vinho);max-width:700px;}
-  .laser .card{background:rgba(253,247,244,.07);border:1px solid rgba(201,162,140,.34);}
-  .laser .card h3{color:var(--creme);} .laser .card p{color:var(--terra-no-vinho);}
-  .laser .corte{margin-top:26px;height:100%;background:var(--creme);border-radius:18px;padding:24px 22px;border-left:6px solid var(--coral);}
-  .laser .corte h3{color:var(--vinho);} .laser .corte p{margin-top:9px;color:var(--tinta-soft);font-size:15.5px;}
-  .laser .lfoto{margin-top:26px;border-radius:18px;overflow:hidden;}
-  .laser .lfoto img{width:100%;height:100%;object-fit:cover;}
-
-  /* sobre */
+  /* ===== quem e a Aline: retrato + prosa, nao mais uma parede de texto ===== */
   .sobre .foto{border-radius:18px;overflow:hidden;margin-bottom:var(--s5);}
   .sobre .foto img{width:100%;height:auto;}
-  .sobre p{margin-top:14px;color:var(--tinta-soft);font-size:16px;}
-  .sobre .liga{color:var(--coral-texto);font-weight:700;}
+  /* a credencial fecha o bloco como assinatura, separada por fio */
+  .assina{margin-top:var(--s5);padding-top:var(--s4);border-top:1px solid var(--linha);
+    font-size:14px;font-weight:700;letter-spacing:.01em;color:var(--terra-texto);}
 
-  /* FAQ */
-  details{background:var(--creme);border:1px solid #EEDFD7;border-radius:14px;margin-top:11px;overflow:hidden;}
-  summary{cursor:pointer;list-style:none;padding:16px 18px;font-weight:700;font-size:16px;color:var(--vinho);
-    display:flex;justify-content:space-between;align-items:center;gap:14px;}
+  /* ===== como funciona: passos separados por fio, sem numero e sem caixa ===== */
+  .passos{max-width:660px;margin-top:var(--s6);border-top:1px solid var(--linha);}
+  .passos p{margin:0;padding:var(--s5) 0;border-bottom:1px solid var(--linha);
+    max-width:var(--medida);font-size:17px;line-height:1.65;color:var(--tinta-soft);text-wrap:pretty;}
+
+  /* ===== as quatro portas: a unica grade de cartao do site, e o cartao inteiro e o link ===== */
+  .portas{display:grid;gap:14px;margin-top:var(--s6);align-items:start;}
+  .porta{background:var(--creme);border:1px solid var(--linha-card);border-radius:16px;
+    padding:26px 24px 22px;display:flex;flex-direction:column;text-decoration:none;
+    transition:border-color .18s cubic-bezier(.22,1,.36,1),transform .18s cubic-bezier(.22,1,.36,1),box-shadow .18s cubic-bezier(.22,1,.36,1);}
+  .porta h3{font-family:var(--serif);font-weight:400;font-size:clamp(21px,5vw,24px);color:var(--vinho);margin:0 0 10px;}
+  .porta p{font-size:16px;line-height:1.6;color:var(--tinta-soft);margin:0 0 var(--s5);text-wrap:pretty;}
+  .porta .ir{display:inline-flex;align-items:center;gap:8px;color:var(--coral-texto);font-weight:700;font-size:15px;}
+  .porta .ir::after{content:"→";transition:transform .18s cubic-bezier(.22,1,.36,1);}
+  .porta:focus-visible{border-radius:16px;}
+  .porta:hover{border-color:var(--coral-d);transform:translateY(-2px);box-shadow:0 14px 30px -18px rgba(91,16,48,.5);}
+  .porta:hover .ir::after{transform:translateX(4px);}
+
+  /* ===== hub de queixa (/laser) e lista de procedimento (/estetica, /contracepcao) =====
+     fio entre itens, nao caixa: sao itens de indice, nao produtos. */
+  .queixa{display:block;border-top:1px solid var(--linha);padding:var(--s5) 0;text-decoration:none;}
+  .queixa:first-of-type{margin-top:var(--s6);}
+  .queixa h3{font-family:var(--serif);font-weight:400;font-size:clamp(20px,4.6vw,23px);color:var(--vinho);margin:0 0 var(--s3);text-wrap:pretty;}
+  .queixa p{font-size:16px;line-height:1.65;color:var(--tinta-soft);max-width:var(--medida);margin:0;text-wrap:pretty;}
+  .queixa > div{min-width:0;}
+  .queixa .nome{color:var(--tinta);}
+  .queixa .nome b{font-weight:700;}
+  .queixa p + p{margin-top:var(--s3);}
+  .queixa .ir{display:inline-flex;align-items:center;gap:7px;margin-top:var(--s4);
+    color:var(--coral-texto);font-weight:700;font-size:15px;}
+  .queixa .ir::after{content:"→";transition:transform .18s cubic-bezier(.22,1,.36,1);}
+  .queixa:hover h3{color:var(--coral-texto);}
+  .queixa:hover .ir::after{transform:translateX(4px);}
+
+  .proc{border-top:1px solid var(--linha);padding:var(--s5) 0;}
+  .proc:first-of-type{margin-top:var(--s6);}
+  .proc h3{font-family:var(--sans);font-size:17px;font-weight:800;line-height:1.35;color:var(--vinho);margin:0 0 var(--s2);}
+  .proc p{font-size:16px;line-height:1.65;color:var(--tinta-soft);max-width:var(--medida);margin:0;text-wrap:pretty;}
+  .confirmar{display:inline-block;background:#FDECEA;color:#A03A34;border:1px solid #E7CBD4;border-radius:99px;
+    font-size:13px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:2px 9px;margin-left:8px;
+    vertical-align:2px;white-space:nowrap;}
+
+  /* o corte declarado (clareamento intimo). sem tarja lateral: caixa inteira, fio inteiro. */
+  .naoentra{background:var(--nude);border:1px solid var(--linha);border-radius:16px;
+    max-width:820px;padding:clamp(22px,4vw,30px);margin-top:var(--s7);}
+  .bg-nude .naoentra{background:var(--creme);}
+  .naoentra h3{font-family:var(--serif);font-weight:400;font-size:clamp(20px,4.4vw,23px);color:var(--vinho);margin:0 0 var(--s3);}
+  .naoentra p{font-size:16px;line-height:1.68;color:var(--tinta-soft);max-width:var(--medida);}
+  .naoentra p + p{margin-top:var(--s3);}
+
+  /* ===== negativas sobre o vinho: o bloco que blinda a pagina na FEBRASGO ===== */
+  .negativas{list-style:none;max-width:660px;margin-top:var(--s5);border-top:1px solid var(--linha-vinho);}
+  .negativas li{padding:var(--s4) 0;border-bottom:1px solid var(--linha-vinho);
+    color:var(--terra-no-vinho);font-size:17px;line-height:1.6;max-width:var(--medida);text-wrap:pretty;}
+  .negativas li b{color:var(--creme);font-weight:700;}
+
+  /* ===== FAQ: indice agrupado por porta, fio por pergunta, nao 16 caixinhas ===== */
+  .faq{margin-top:var(--s6);}
+  .grupo + .grupo{margin-top:var(--s7);}
+  .grupo > h3{font-family:var(--serif);font-weight:400;font-size:19px;color:var(--coral-texto);
+    margin-bottom:var(--s2);}
+  details{border-top:1px solid var(--linha);}
+  .grupo details:last-of-type{border-bottom:1px solid var(--linha);}
+  summary{cursor:pointer;list-style:none;padding:15px 36px 15px 0;min-height:52px;position:relative;
+    display:flex;align-items:center;font-weight:600;font-size:16.5px;line-height:1.45;color:var(--tinta);}
+  summary:hover{color:var(--vinho);}
+  details[open] summary{font-weight:700;color:var(--vinho);}
   summary::-webkit-details-marker{display:none;}
-  summary::after{content:"+";font-family:var(--serif);font-size:22px;color:var(--coral-texto);flex:0 0 auto;line-height:1;}
-  details[open] summary::after{content:"–";}
-  details .a{padding:0 18px 17px;color:var(--tinta-soft);font-size:15.5px;}
+  summary::after{content:"+";position:absolute;right:4px;top:50%;margin-top:-13px;width:26px;height:26px;
+    display:grid;place-items:center;font-family:var(--serif);font-size:21px;line-height:1;
+    color:var(--coral-texto);transition:transform .18s cubic-bezier(.22,1,.36,1);}
+  details[open] summary::after{transform:rotate(45deg);}
+  details .a{padding:0 36px 20px 0;max-width:var(--medida);color:var(--tinta-soft);font-size:16px;line-height:1.7;}
 
-  /* onde atendo */
-  .local{display:grid;gap:16px;margin-top:24px;}
-  .local .box{background:var(--creme);border:1px solid #EEDFD7;border-radius:18px;padding:22px 20px;}
-  .local .box .lbl{font-size:13px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--terra-texto);}
-  .local .box p{margin-top:9px;color:var(--tinta-soft);font-size:15.5px;}
+  /* ===== depoimentos: bloco 6, ainda sem conteudo real ===== */
+  .depo{max-width:660px;margin-top:var(--s5);border-top:1px solid var(--linha);padding-top:var(--s5);}
+  .depo p{max-width:var(--medida);font-size:16px;line-height:1.68;color:var(--tinta-soft);}
+  .depo p + p{margin-top:var(--s3);}
+
+  /* faixa de ambiente: respiro de imagem entre dois blocos de texto.
+     e full-bleed de proposito, e a unica coisa da pagina que encosta na borda. */
+  .faixa img{width:100%;height:clamp(190px,26vw,320px);object-fit:cover;}
+
+  /* bloco tecnico com o aparelho ao lado: publico de decisao quer ver o equipamento */
+  .comfoto .lado{margin-top:var(--s5);border-radius:18px;overflow:hidden;}
+  .comfoto .grid > div > p{max-width:none;}
+  .comfoto .lado img{width:100%;height:auto;}
+
+  /* ===== onde e como agendar: endereco e' informacao, nao produto. sem caixa. ===== */
+  .local{display:grid;gap:var(--s6);margin-top:var(--s6);}
+  .local .box{border-top:1px solid var(--linha);padding-top:var(--s4);}
+  .local .box .lbl{display:block;font-size:13px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--terra-texto);}
+  .local .box p{margin-top:var(--s3);color:var(--tinta-soft);font-size:16px;line-height:1.65;}
+  .local .box p b{color:var(--vinho);font-family:var(--serif);font-weight:400;font-size:20px;line-height:1.3;}
   .pend{display:inline-block;background:#F3E2DA;border:1px dashed var(--coral-d);color:var(--coral-texto);
-    font-size:13px;font-weight:700;padding:2px 8px;border-radius:7px;}
+    font-size:13px;font-weight:700;line-height:1.5;padding:3px 9px;border-radius:7px;}
 
   /* CTA final */
   .final{text-align:center;} .final h2{color:var(--creme);}
+  .final .wrap > p{max-width:52ch;margin-left:auto;margin-right:auto;}
   .final .sym{width:52px;height:52px;margin:0 auto 18px;}
   .final .cta{margin-top:24px;}
   .final .micro{color:var(--terra-no-vinho);font-size:14px;margin-top:12px;}
@@ -204,7 +275,11 @@
     border-top:1px solid #E7D6CD;padding:10px 14px;box-shadow:0 -6px 18px rgba(91,16,48,.12);
     padding-bottom:calc(10px + env(safe-area-inset-bottom));}
   body{padding-bottom:82px;}
-  @media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;}}
+  @media (prefers-reduced-motion:reduce){
+    *{scroll-behavior:auto!important;animation-duration:.01ms!important;transition-duration:.01ms!important;}
+    .porta:hover,.cta:hover{transform:none;}
+    .porta:hover .ir::after,.queixa:hover .ir::after{transform:none;}
+  }
 
   /* ===== desktop ===== */
   @media (min-width:821px){
@@ -218,16 +293,20 @@
     .hero-panel{margin-top:0;}
     .hero-panel .badge{top:18px;left:18px;padding:11px 17px;gap:12px;}
     .hero-panel .badge .sym{width:32px;height:32px;} .hero-panel .badge b{font-size:18px;} .hero-panel .badge span{font-size:13px;}
-    .cred ul{grid-template-columns:repeat(3,1fr);gap:26px;}
-    .cards{grid-template-columns:repeat(2,1fr);gap:20px;}
-    .lista{grid-template-columns:repeat(2,1fr);gap:12px;}
-    .cards.tres{grid-template-columns:repeat(3,1fr);}
-    .band img{height:340px;}
-    .laser .grid{display:grid;grid-template-columns:1.15fr .85fr;gap:30px;align-items:stretch;}
-    .laser .lfoto{margin-top:0;}
-    .sobre .grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:40px;align-items:center;}
+    .cred ul{grid-template-columns:repeat(3,1fr);gap:30px;}
+    .portas{gap:20px;}
+    .porta{padding:30px 28px 26px;}
+    .sobre .grid{display:grid;grid-template-columns:.82fr 1.18fr;gap:clamp(32px,4.5vw,56px);align-items:start;}
     .sobre .foto{margin-bottom:0;}
-    .local{grid-template-columns:repeat(2,1fr);gap:20px;}
+    .local{grid-template-columns:repeat(2,1fr);gap:clamp(28px,4vw,48px);}
+    .faq{max-width:860px;}
+    .passos p{padding:var(--s6) 0;font-size:18px;}
+    .comfoto .grid{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(32px,4.5vw,56px);align-items:start;}
+    .comfoto .lado{margin-top:0;}
+    .queixa{display:grid;grid-template-columns:.4fr .6fr;gap:clamp(28px,4vw,56px);align-items:start;padding:var(--s6) 0;}
+    .queixa h3{margin:0;}
+    .proc{display:grid;grid-template-columns:.4fr .6fr;gap:clamp(28px,4vw,56px);align-items:start;padding:var(--s5) 0;}
+    .proc h3{margin:0;}
     .cta{width:auto;}
     .sticky{display:none;} .wafloat{display:flex;}
     body{padding-bottom:0;}
@@ -297,28 +376,14 @@
     font-weight:600;line-height:1.4;color:var(--tinta);max-width:34ch}
   .hero-copy .cred-line::before{content:"";position:absolute;left:0;top:3px;bottom:3px;width:3px;
     border-radius:3px;background:var(--coral-texto)}
-  .hero-copy .lead{margin-top:22px;font-size:clamp(17px,2.3vw,20px)}
+  /* o hero e decisao fechada: mantem a medida que ele ja tinha, nao a de prosa */
+  .hero-copy .lead{margin-top:22px;font-size:clamp(17px,2.3vw,20px);max-width:640px}
   .chips{display:flex;flex-wrap:wrap;gap:9px;margin-top:24px;padding:0;list-style:none}
   .chips a{display:inline-block;background:var(--creme);border:1px solid var(--linha);border-radius:99px;
     padding:10px 17px;font-size:15px;font-weight:600;color:var(--vinho);text-decoration:none;
     transition:background .15s,border-color .15s}
   .chips a:hover{background:#fff;border-color:var(--coral-texto)}
-  .cred li b{font-weight:800}
-  .portas{display:grid;gap:16px;margin-top:26px}
   @media(min-width:760px){.portas{grid-template-columns:1fr 1fr}}
-  .porta{background:var(--creme);border:1px solid var(--linha);border-radius:16px;padding:24px 22px;display:flex;flex-direction:column}
-  .porta h3{font-family:var(--serif);font-weight:400;font-size:22px;color:var(--vinho);margin:0 0 8px}
-  .porta p{font-size:15px;margin:0 0 16px;flex:1}
-  .porta a{color:var(--coral-texto);font-weight:700;font-size:14px;text-decoration:none}
-  .porta a:hover{text-decoration:underline}
-  .queixa{border-top:1px solid var(--linha);padding:22px 0}
-  .queixa h3{font-family:var(--serif);font-weight:400;font-size:21px;color:var(--vinho);margin:0 0 8px}
-  .queixa p{font-size:15px;margin:0 0 10px}
-  .proc{border-top:1px solid var(--linha);padding:20px 0}
-  .proc h3{font-size:16px;font-weight:700;color:var(--vinho);margin:0 0 6px}
-  .proc p{font-size:15px;margin:0}
-  .confirmar{display:inline-block;background:#FDECEA;color:#A03A34;border:1px solid #E7CBD4;border-radius:99px;font-size:13px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:3px 9px;margin-left:8px;vertical-align:middle}
-  .naoentra{background:var(--creme);border-left:3px solid var(--coral-texto);border-radius:0 12px 12px 0;padding:20px 22px;margin-top:24px}
 </style>
 </head><body>
 
@@ -376,67 +441,112 @@
   <div class="wrap">
     <h2>O que te trouxe até aqui?</h2>
     <div class="portas">
-      <div class="porta">
+      <a class="porta" href="parto.html">
         <h3>Parto humanizado</h3>
         <p>Pré-natal e parto com a mesma médica, do começo ao fim. Partos no Hospital Mater Dei.</p>
-        <a href="parto.html">Ver como funciona &rarr;</a>
-      </div>
-      <div class="porta">
+        <span class="ir">Ver como funciona</span>
+      </a>
+      <a class="porta" href="laser.html">
         <h3>Laser íntimo</h3>
         <p>Ressecamento, dor na relação, perda de urina ao tossir ou correr, incômodo que sobrou do parto. Tem nome, tem causa e tem o que fazer. O laser é uma das opções, e não serve pra toda queixa.</p>
-        <a href="laser.html">Ver o que o laser trata &rarr;</a>
-      </div>
-      <div class="porta">
+        <span class="ir">Ver o que o laser trata</span>
+      </a>
+      <a class="porta" href="estetica-intima.html">
         <h3>Estética avançada</h3>
         <p>Volume, flacidez, assimetria, marca de cicatriz. Se te incomoda, já é motivo suficiente pra perguntar. A conversa começa pelo que dá pra fazer, pelo que não dá, e pelo que não precisa ser feito.</p>
-        <a href="estetica-intima.html">Ver o que é possível &rarr;</a>
-      </div>
-      <div class="porta">
+        <span class="ir">Ver o que é possível</span>
+      </a>
+      <a class="porta" href="contracepcao.html">
         <h3>Contracepção</h3>
         <p>DIU hormonal, DIU de cobre, implante, e as dúvidas honestas sobre cada um deles. Colocação no consultório.</p>
-        <a href="contracepcao.html">Ver as opções &rarr;</a>
-      </div>
+        <span class="ir">Ver as opções</span>
+      </a>
     </div>
   </div>
 </section>
 
 <section class="block bg-creme sobre">
   <div class="wrap">
-    <h2>Dra. Aline Bonanato</h2>
-    <p class="lead">Dá aula de ginecologia pra quem ainda vai ser médico, e atende no consultório na mesma semana. O que ela ensina na faculdade é o que ela usa na consulta: o que é, o que não é, e o que vale a pena fazer.</p>
-    <p>Acompanha os partos das próprias pacientes no Mater Dei. Atende na Clínica Vitti, em Belo Horizonte, na agenda dela. Quem marca com a Aline é atendida pela Aline.</p>
-    <p class="microcopy" style="text-align:left">Ginecologia e Obstetrícia · CRM-MG 75153 · RQE 50466</p>
+    <div class="grid">
+      <div class="foto">
+        <img src="fotos/ph-sobre.jpg" width="900" height="720" loading="lazy"
+             alt="PLACEHOLDER: Dra. Aline Bonanato no consultório da Clínica Vitti">
+      </div>
+      <div>
+        <h2>Dra. Aline Bonanato</h2>
+        <p class="lead">Dá aula de ginecologia pra quem ainda vai ser médico, e atende no consultório na mesma semana. O que ela ensina na faculdade é o que ela usa na consulta: o que é, o que não é, e o que vale a pena fazer.</p>
+        <p>Acompanha os partos das próprias pacientes no Mater Dei. Atende na Clínica Vitti, em Belo Horizonte, na agenda dela. Quem marca com a Aline é atendida pela Aline.</p>
+        <p class="assina">Ginecologia e Obstetrícia · CRM-MG 75153 · RQE 50466</p>
+      </div>
+    </div>
   </div>
 </section>
 
 <section class="block ar bg-nude">
   <div class="wrap">
     <h2>Como funciona</h2>
-    <p class="lead">Você conta o que está sentindo com as palavras que quiser. Aqui se diz vulva, sexo e dor na relação sem rodeio, e não existe assunto que deixe alguém sem graça.</p>
-    <p>Depois vem o exame e a explicação: o que é, o que não é, e o que vale a pena fazer. Se não for caso de tratamento nenhum, você sai sabendo disso também. Vale igual pra queixa de saúde e pra queixa de estética.</p>
-    <p>Quando existe indicação de procedimento, ele vem com o que trata, o que não trata e o que a literatura mostra até hoje. E é decidido depois, com calma, nunca no mesmo minuto em que foi apresentado.</p>
-    <p><b>Você não fica no vácuo entre uma consulta e outra.</b></p>
+    <div class="passos">
+      <p>Você conta o que está sentindo com as palavras que quiser. Aqui se diz vulva, sexo e dor na relação sem rodeio, e não existe assunto que deixe alguém sem graça.</p>
+      <p>Depois vem o exame e a explicação: o que é, o que não é, e o que vale a pena fazer. Se não for caso de tratamento nenhum, você sai sabendo disso também. Vale igual pra queixa de saúde e pra queixa de estética.</p>
+      <p>Quando existe indicação de procedimento, ele vem com o que trata, o que não trata e o que a literatura mostra até hoje. E é decidido depois, com calma, nunca no mesmo minuto em que foi apresentado.</p>
+    </div>
+    <p class="fecha">Você não fica no vácuo entre uma consulta e outra.</p>
   </div>
 </section>
 
 <section class="block bg-nude">
   <div class="wrap">
     <h2>O que costumam perguntar</h2>
-    <details><summary>Quanto custa a consulta e quanto tempo dura?</summary><div class="a"><span class="pend">PLACEHOLDER: resposta a escrever com a Aline</span></div></details>
-    <details><summary>Atende por convênio?</summary><div class="a"><span class="pend">PLACEHOLDER: resposta a escrever com a Aline</span></div></details>
-    <details><summary>Preciso levar exames? Posso ir menstruada?</summary><div class="a"><span class="pend">PLACEHOLDER: resposta a escrever com a Aline</span></div></details>
-    <details><summary>Estou na menopausa, com ressecamento e dor na relação. Isso tem tratamento?</summary><div class="a"><span class="pend">PLACEHOLDER: resposta a escrever com a Aline</span></div></details>
-    <details><summary>O laser serve pra qualquer mulher?</summary><div class="a"><span class="pend">PLACEHOLDER: resposta a escrever com a Aline</span></div></details>
-    <details><summary>Não gosto da aparência da minha vulva. Isso é bobagem minha?</summary><div class="a"><span class="pend">PLACEHOLDER: resposta a escrever com a Aline</span></div></details>
-    <details><summary>Quais procedimentos estéticos você faz, e quais você não faz?</summary><div class="a"><span class="pend">PLACEHOLDER: resposta a escrever com a Aline</span></div></details>
-    <details><summary>Coloca DIU na própria consulta ou precisa marcar outro dia?</summary><div class="a"><span class="pend">PLACEHOLDER: resposta a escrever com a Aline</span></div></details>
-    <details><summary>Você acompanha o parto ou é uma equipe? Em qual hospital?</summary><div class="a"><span class="pend">PLACEHOLDER: resposta a escrever com a Aline</span></div></details>
-    <details><summary>Parto humanizado quer dizer que você não faz cesárea?</summary><div class="a"><span class="pend">PLACEHOLDER: resposta a escrever com a Aline</span></div></details>
-    <details><summary>Nunca fui a uma ginecologista com quem me sinta à vontade. Como é a primeira consulta?</summary><div class="a"><span class="pend">PLACEHOLDER: resposta a escrever com a Aline</span></div></details>
+    <div class="faq">
+      <div class="grupo">
+        <h3>Sobre a consulta</h3>
+        <details><summary>Quanto custa a consulta e quanto tempo dura?</summary><div class="a"><span class="pend">PLACEHOLDER: resposta a escrever com a Aline</span></div></details>
+        <details><summary>Atende por convênio?</summary><div class="a"><span class="pend">PLACEHOLDER: resposta a escrever com a Aline</span></div></details>
+        <details><summary>Preciso levar exames? Posso ir menstruada?</summary><div class="a"><span class="pend">PLACEHOLDER: resposta a escrever com a Aline</span></div></details>
+      </div>
+      <div class="grupo">
+        <h3>Laser e saúde íntima</h3>
+        <details><summary>Estou na menopausa, com ressecamento e dor na relação. Isso tem tratamento?</summary><div class="a"><span class="pend">PLACEHOLDER: resposta a escrever com a Aline</span></div></details>
+        <details><summary>O laser serve pra qualquer mulher?</summary><div class="a"><span class="pend">PLACEHOLDER: resposta a escrever com a Aline</span></div></details>
+      </div>
+      <div class="grupo">
+        <h3>Estética íntima</h3>
+        <details><summary>Não gosto da aparência da minha vulva. Isso é bobagem minha?</summary><div class="a"><span class="pend">PLACEHOLDER: resposta a escrever com a Aline</span></div></details>
+        <details><summary>Quais procedimentos estéticos você faz, e quais você não faz?</summary><div class="a"><span class="pend">PLACEHOLDER: resposta a escrever com a Aline</span></div></details>
+      </div>
+      <div class="grupo">
+        <h3>Contracepção</h3>
+        <details><summary>Coloca DIU na própria consulta ou precisa marcar outro dia?</summary><div class="a"><span class="pend">PLACEHOLDER: resposta a escrever com a Aline</span></div></details>
+      </div>
+      <div class="grupo">
+        <h3>Gravidez e parto</h3>
+        <details><summary>Você acompanha o parto ou é uma equipe? Em qual hospital?</summary><div class="a"><span class="pend">PLACEHOLDER: resposta a escrever com a Aline</span></div></details>
+        <details><summary>Parto humanizado quer dizer que você não faz cesárea?</summary><div class="a"><span class="pend">PLACEHOLDER: resposta a escrever com a Aline</span></div></details>
+      </div>
+      <div class="grupo">
+        <h3>A pergunta que quase ninguém escreve</h3>
+        <details><summary>Nunca fui a uma ginecologista com quem me sinta à vontade. Como é a primeira consulta?</summary><div class="a"><span class="pend">PLACEHOLDER: resposta a escrever com a Aline</span></div></details>
+      </div>
+    </div>
   </div>
 </section>
 
 <section class="block bg-creme">
+  <div class="wrap">
+    <h2>O que costumam contar depois</h2>
+    <div class="depo">
+      <p><span class="pend">PLACEHOLDER: 3 relatos a coletar com a Aline, um deles de paciente que veio por estética</span></p>
+      <p>Cada relato é publicado com autorização por escrito da paciente.</p>
+    </div>
+  </div>
+</section>
+
+<section class="faixa">
+  <img src="fotos/ph-faixa.jpg" width="1600" height="620" loading="lazy"
+       alt="PLACEHOLDER: consultório da Clínica Vitti, sem paciente">
+</section>
+
+<section class="block bg-nude">
   <div class="wrap">
     <h2>Vamos marcar</h2>
     <div class="local">
