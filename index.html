@@ -180,18 +180,25 @@
   .passos p{margin:0;padding:var(--s5) 0;border-bottom:1px solid var(--linha);
     max-width:var(--medida);font-size:17px;line-height:1.65;color:var(--tinta-soft);text-wrap:pretty;}
 
-  /* ===== as quatro portas: a unica grade de cartao do site, e o cartao inteiro e o link ===== */
+  /* ===== as quatro portas: a unica grade de cartao do site =====
+     o cartao e <a> quando a interna esta no ar (ATIVAS no build.py) e <div> quando
+     nao esta. o lift e a seta so existem no <a>: caixa que levanta no hover e nao
+     clica e afordancia falsa, e o cartao-conteudo nao promete clique nenhum.
+     scroll-margin poe o titulo abaixo da nav sticky quando a chip do hero ancora. */
   .portas{display:grid;gap:14px;margin-top:var(--s6);align-items:start;}
   .porta{background:var(--creme);border:1px solid var(--linha-card);border-radius:16px;
-    padding:26px 24px 22px;display:flex;flex-direction:column;text-decoration:none;
+    padding:26px 24px 22px;display:flex;flex-direction:column;text-decoration:none;scroll-margin-top:88px;
     transition:border-color .18s cubic-bezier(.22,1,.36,1),transform .18s cubic-bezier(.22,1,.36,1),box-shadow .18s cubic-bezier(.22,1,.36,1);}
   .porta h3{font-family:var(--serif);font-weight:400;font-size:clamp(21px,5vw,24px);color:var(--vinho);margin:0 0 10px;}
   .porta p{font-size:16px;line-height:1.6;color:var(--tinta-soft);margin:0 0 var(--s5);text-wrap:pretty;}
+  .porta p:last-child{margin-bottom:0;}
   .porta .ir{display:inline-flex;align-items:center;gap:8px;color:var(--coral-texto);font-weight:700;font-size:15px;}
   .porta .ir::after{content:"→";transition:transform .18s cubic-bezier(.22,1,.36,1);}
-  .porta:focus-visible{border-radius:16px;}
-  .porta:hover{border-color:var(--coral-d);transform:translateY(-2px);box-shadow:0 14px 30px -18px rgba(91,16,48,.5);}
-  .porta:hover .ir::after{transform:translateX(4px);}
+  a.porta:focus-visible{border-radius:16px;}
+  a.porta:hover{border-color:var(--coral-d);transform:translateY(-2px);box-shadow:0 14px 30px -18px rgba(91,16,48,.5);}
+  a.porta:hover .ir::after{transform:translateX(4px);}
+  /* saida unica da grade quando os cartoes nao levam a lugar nenhum */
+  .porta-cta{margin-top:var(--s6);}
 
   /* ===== hub de queixa (/laser) e lista de procedimento (/estetica, /contracepcao) =====
      fio entre itens, nao caixa: sao itens de indice, nao produtos. */
@@ -297,8 +304,8 @@
   body{padding-bottom:82px;}
   @media (prefers-reduced-motion:reduce){
     *{scroll-behavior:auto!important;animation-duration:.01ms!important;transition-duration:.01ms!important;}
-    .porta:hover,.cta:hover{transform:none;}
-    .porta:hover .ir::after{transform:none;}
+    a.porta:hover,.cta:hover{transform:none;}
+    a.porta:hover .ir::after{transform:none;}
   }
 
   /* ===== desktop ===== */
@@ -316,6 +323,7 @@
     .cred ul{grid-template-columns:repeat(3,1fr);gap:30px;}
     .portas{gap:20px;}
     .porta{padding:30px 28px 26px;}
+    .porta-cta{text-align:center;}
     .sobre .grid{display:grid;grid-template-columns:.82fr 1.18fr;gap:clamp(32px,4.5vw,56px);align-items:start;}
     .sobre .foto{margin-bottom:0;}
     .local{grid-template-columns:repeat(2,1fr);gap:clamp(28px,4vw,48px);}
@@ -482,12 +490,7 @@
       <span class="tag">Ginecologia e obstetrícia<span class="cidade"> · Belo Horizonte</span></span>
     </div>
   </a>
-  <div class="navlinks">
-    <a href="parto.html">Parto</a>
-    <a href="laser.html">Laser íntimo</a>
-    <a href="estetica-intima.html">Estética</a>
-    <a href="contracepcao.html">DIU e implante</a>
-  </div>
+  
   <button class="navcta" data-wa><span class="curto">WhatsApp</span><span class="longo">Marcar consulta</span></button>
 </nav>
 
@@ -498,10 +501,10 @@
       <h1>Saúde e estética íntima <span class="hi">em Belo Horizonte.</span></h1>
       <p class="cred-line">Professora de ginecologia na Faculdade de Ciências Médicas e médica do corpo clínico do Mater Dei.</p>
       <ul class="chips">
-        <li><a href="parto.html">Parto humanizado</a></li>
-        <li><a href="laser.html">Laser íntimo</a></li>
-        <li><a href="estetica-intima.html">Estética avançada</a></li>
-        <li><a href="contracepcao.html">Contracepção</a></li>
+        <li><a href="#porta-parto">Parto humanizado</a></li>
+        <li><a href="#porta-laser">Laser íntimo</a></li>
+        <li><a href="#porta-estetica">Estética avançada</a></li>
+        <li><a href="#porta-contracepcao">Contracepção</a></li>
       </ul>
       <button class="cta" data-wa><svg class="wa" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3C9.4 3 4 8.4 4 15c0 2.1.6 4.2 1.6 6L4 29l8.2-1.5c1.8.9 3.7 1.4 5.8 1.4 6.6 0 12-5.4 12-12S22.6 3 16 3z"/></svg>Marcar consulta</button>
     </div>
@@ -526,27 +529,24 @@
   <div class="wrap">
     <h2>O que te trouxe até aqui?</h2>
     <div class="portas">
-      <a class="porta" href="parto.html">
+      <div class="porta" id="porta-parto">
         <h3>Parto humanizado</h3>
         <p>Pré-natal e parto com a mesma médica, do começo ao fim. Partos no Hospital Mater Dei.</p>
-        <span class="ir">Ver como funciona</span>
-      </a>
-      <a class="porta" href="laser.html">
+      </div>
+      <div class="porta" id="porta-laser">
         <h3>Laser íntimo</h3>
         <p>Ressecamento, dor na relação, perda de urina ao tossir ou correr, incômodo que sobrou do parto. Tem nome, tem causa e tem o que fazer. O laser é uma das opções, e não serve pra toda queixa.</p>
-        <span class="ir">Ver o que o laser trata</span>
-      </a>
-      <a class="porta" href="estetica-intima.html">
+      </div>
+      <div class="porta" id="porta-estetica">
         <h3>Estética avançada</h3>
         <p>Volume, flacidez, assimetria, marca de cicatriz. Se te incomoda, já é motivo suficiente pra perguntar. A conversa começa pelo que dá pra fazer, pelo que não dá, e pelo que não precisa ser feito.</p>
-        <span class="ir">Ver o que é possível</span>
-      </a>
-      <a class="porta" href="contracepcao.html">
+      </div>
+      <div class="porta" id="porta-contracepcao">
         <h3>Contracepção</h3>
         <p>DIU hormonal, DIU de cobre, implante, e as dúvidas honestas sobre cada um deles. Colocação no consultório.</p>
-        <span class="ir">Ver as opções</span>
-      </a>
+      </div>
     </div>
+    <div class="porta-cta"><button class="cta" data-wa><svg class="wa" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3C9.4 3 4 8.4 4 15c0 2.1.6 4.2 1.6 6L4 29l8.2-1.5c1.8.9 3.7 1.4 5.8 1.4 6.6 0 12-5.4 12-12S22.6 3 16 3z"/></svg>Marcar consulta</button></div>
   </div>
 </section>
 
