@@ -195,6 +195,9 @@
   .porta .ir{display:inline-flex;align-items:center;gap:8px;color:var(--coral-texto);font-weight:700;font-size:15px;}
   .porta .ir::after{content:"→";transition:transform .18s cubic-bezier(.22,1,.36,1);}
   a.porta:focus-visible{border-radius:16px;}
+  /* alvo de ancora, nao controle: recebe foco pra chip do hero levar o teclado
+     junto com a rolagem, e nao desenha anel porque ninguem tabulou ate aqui. */
+  div.porta:focus{outline:none;}
   a.porta:hover{border-color:var(--coral-d);transform:translateY(-2px);box-shadow:0 14px 30px -18px rgba(91,16,48,.5);}
   a.porta:hover .ir::after{transform:translateX(4px);}
   /* saida unica da grade quando os cartoes nao levam a lugar nenhum */
@@ -529,19 +532,19 @@
   <div class="wrap">
     <h2>O que te trouxe até aqui?</h2>
     <div class="portas">
-      <div class="porta" id="porta-parto">
+      <div class="porta" id="porta-parto" tabindex="-1">
         <h3>Parto humanizado</h3>
         <p>Pré-natal e parto com a mesma médica, do começo ao fim. Partos no Hospital Mater Dei.</p>
       </div>
-      <div class="porta" id="porta-laser">
+      <div class="porta" id="porta-laser" tabindex="-1">
         <h3>Laser íntimo</h3>
         <p>Ressecamento, dor na relação, perda de urina ao tossir ou correr, incômodo que sobrou do parto. Tem nome, tem causa e tem o que fazer. O laser é uma das opções, e não serve pra toda queixa.</p>
       </div>
-      <div class="porta" id="porta-estetica">
+      <div class="porta" id="porta-estetica" tabindex="-1">
         <h3>Estética avançada</h3>
         <p>Volume, flacidez, assimetria, marca de cicatriz. Se te incomoda, já é motivo suficiente pra perguntar. A conversa começa pelo que dá pra fazer, pelo que não dá, e pelo que não precisa ser feito.</p>
       </div>
-      <div class="porta" id="porta-contracepcao">
+      <div class="porta" id="porta-contracepcao" tabindex="-1">
         <h3>Contracepção</h3>
         <p>DIU hormonal, DIU de cobre, implante, e as dúvidas honestas sobre cada um deles. Colocação no consultório.</p>
       </div>
