@@ -161,6 +161,12 @@
   .cred ul{list-style:none;display:grid;gap:10px;}
   .cred li{color:var(--nude);font-size:15px;font-weight:500;line-height:1.45;}
   .cred li b{font-weight:800;}
+  /* pendencia na barra vinho: o chip claro do .pend berrava mais alto que o unico
+     beneficio real do lado. mesma marcacao, tratamento de fundo escuro: fio tracejado
+     e texto no mesmo corpo dos outros dois, o selo e que carrega o sinal. */
+  .cred .pend{display:inline;background:none;border:0;border-bottom:1px dashed rgba(253,247,244,.45);
+    border-radius:0;color:var(--nude);font-size:15px;font-weight:500;padding:0 0 3px;}
+  .cred .confirmar{margin-left:0;margin-top:9px;display:table;}
 
   /* ===== quem e a Aline: retrato + prosa, nao mais uma parede de texto ===== */
   .sobre .foto{border-radius:18px;overflow:hidden;margin-bottom:var(--s5);}
@@ -453,9 +459,11 @@
     .chips{margin-top:20px;}
     .hero .cta{margin-top:22px;}
 
-    /* faixa de autoridade: centralizada no celular. balance evita a orfa
-       ("MG" sozinho na segunda linha) que o texto centralizado deixa exposta. */
+    /* barra de beneficios: centralizada no celular. balance evita a orfa
+       ("MG" sozinho na segunda linha) que o texto centralizado deixa exposta.
+       o selo e display:table, entao so margem auto centraliza ele junto. */
     .cred li{text-align:center;text-wrap:balance;}
+    .cred .confirmar{margin-left:auto;margin-right:auto;}
 
   }
 </style>
@@ -466,7 +474,7 @@
 <!-- End Google Tag Manager (noscript) -->
 
 <!-- NAV -->
-<nav class="nav">
+<nav class="nav" data-bloco="header">
   <a class="brand" href="/">
     <svg class="sym" viewBox="0 44 108 108" aria-hidden="true"><path d="M64 5 C71 14 78 25 80 39 C81 51 71 57 69 70 C67 84 70 97 75 109 C83 125 88 145 84 165 C80 181 70 191 63 197" fill="none" stroke="#5B1030" stroke-width="4.2" stroke-linecap="round"/><path d="M22 59 C32 71 41 76 49 75 C57 74 63 68 67 60" fill="none" stroke="#5B1030" stroke-width="4.2" stroke-linecap="round"/><path d="M16 148 C22 132 30 118 42 106" fill="none" stroke="#E0736F" stroke-width="4.2" stroke-linecap="round"/><path d="M25 130 C18 126 15 116 18 109 C25 112 29 121 25 130 Z" fill="#F0C4BE" stroke="#E0736F" stroke-width="3.8" stroke-linejoin="round"/><path d="M33 117 C35 108 43 101 50 100 C50 108 43 116 33 117 Z" fill="none" stroke="#E0736F" stroke-width="3.8" stroke-linejoin="round"/><path d="M28 106 C24 99 25 90 29 85 C34 90 34 100 28 106 Z" fill="#F0C4BE" stroke="#E0736F" stroke-width="3.8" stroke-linejoin="round"/></svg>
     <div>
@@ -483,7 +491,7 @@
   <button class="navcta" data-wa><span class="curto">WhatsApp</span><span class="longo">Marcar consulta</span></button>
 </nav>
 
-<section class="hero bg-nude">
+<section class="hero bg-nude" data-bloco="hero">
   <div class="wrap">
     <p class="hero-reg">CRM-MG 75153 · RQE 50466</p>
     <div class="hero-copy">
@@ -501,15 +509,15 @@
   </div>
 </section>
 
-<section class="cred">
+<section class="cred" data-bloco="beneficios">
   <div class="wrap"><ul>
-    <li><b>Clínica Vitti</b>, Belo Horizonte</li>
     <li>Consultas às <b>segundas-feiras</b>, com hora marcada</li>
-    <li>Ginecologia e Obstetrícia · <b>RQE 50466</b> no CRM-MG</li>
+    <li><span class="pend">PLACEHOLDER: se atende convênio, e quais</span><span class="confirmar">a confirmar</span></li>
+    <li><span class="pend">PLACEHOLDER: em quanto tempo ela responde no WhatsApp</span><span class="confirmar">a confirmar</span></li>
   </ul></div>
 </section>
 
-<section class="block ar bg-nude">
+<section class="block ar bg-nude" data-bloco="servicos">
   <div class="wrap">
     <h2>As opções</h2>
     <div class="proc"><h3>DIU hormonal (Mirena, Kyleena)</h3><p>Libera hormônio dentro do útero, em dose baixa e local. Costuma reduzir muito o fluxo menstrual, e em parte das mulheres a menstruação para. Os dois têm tamanho e dose diferentes.</p></div>
@@ -520,7 +528,7 @@
   </div>
 </section>
 
-<section class="block bg-creme">
+<section class="block bg-creme" data-bloco="servicos">
   <div class="wrap">
     <h2>Dói colocar?</h2>
     <p class="lead">Resposta honesta: dói em algumas mulheres, incomoda em outras, e tem quem descreva como uma cólica forte que passa rápido.</p>
@@ -529,14 +537,14 @@
   </div>
 </section>
 
-<section class="block ar bg-nude">
+<section class="block ar bg-nude" data-bloco="servicos">
   <div class="wrap">
     <h2>Coloca no mesmo dia da consulta?</h2>
     <p class="lead"><span class="pend">PLACEHOLDER: esta seção só sobe com a resposta da Aline: se a colocação é no mesmo dia ou em consulta separada, o que precisa estar pronto antes (exame, ultrassom, dispositivo comprado pela paciente) e se ela coloca por convênio</span></p>
   </div>
 </section>
 
-<section class="block bg-creme">
+<section class="block bg-creme" data-bloco="servicos">
   <div class="wrap">
     <h2>Não é só o dispositivo</h2>
     <p class="lead">A consulta de contracepção é consulta de ginecologista. Entra o seu histórico, o que você já usou e não deu certo, o que você espera do seu ciclo e o que te preocupa.</p>
@@ -544,7 +552,7 @@
   </div>
 </section>
 
-<section class="block bg-nude">
+<section class="block bg-nude" data-bloco="faq">
   <div class="wrap">
     <h2>Perguntas sobre DIU e implante</h2>
     <div class="faq">
@@ -560,7 +568,7 @@
   </div>
 </section>
 
-<section class="block bg-creme">
+<section class="block bg-creme" data-bloco="local">
   <div class="wrap">
     <h2>Vamos marcar</h2>
     <div class="local">
@@ -574,7 +582,7 @@
   </div>
 </section>
 
-<section class="block bg-vinho final">
+<section class="block bg-vinho final" data-bloco="cta-final">
   <div class="wrap">
     <svg class="sym" viewBox="0 44 108 108" aria-hidden="true"><path d="M64 5 C71 14 78 25 80 39 C81 51 71 57 69 70 C67 84 70 97 75 109 C83 125 88 145 84 165 C80 181 70 191 63 197" fill="none" stroke="#FDF7F4" stroke-width="4.2" stroke-linecap="round"/><path d="M22 59 C32 71 41 76 49 75 C57 74 63 68 67 60" fill="none" stroke="#FDF7F4" stroke-width="4.2" stroke-linecap="round"/><path d="M16 148 C22 132 30 118 42 106" fill="none" stroke="#E0736F" stroke-width="4.2" stroke-linecap="round"/></svg>
     <h2>Escreva o que está sentindo, com as palavras que quiser.</h2>
@@ -583,7 +591,7 @@
   </div>
 </section>
 
-<footer><div class="wrap"><div class="frow">
+<footer data-bloco="rodape"><div class="wrap"><div class="frow">
   <div class="fbrand">
     <svg class="sym" viewBox="0 44 108 108" aria-hidden="true"><path d="M64 5 C71 14 78 25 80 39 C81 51 71 57 69 70 C67 84 70 97 75 109 C83 125 88 145 84 165 C80 181 70 191 63 197" fill="none" stroke="#FDF7F4" stroke-width="4.2" stroke-linecap="round"/><path d="M22 59 C32 71 41 76 49 75 C57 74 63 68 67 60" fill="none" stroke="#FDF7F4" stroke-width="4.2" stroke-linecap="round"/><path d="M16 148 C22 132 30 118 42 106" fill="none" stroke="#E0736F" stroke-width="4.2" stroke-linecap="round"/></svg>
     <b>Dra. Aline Bonanato</b>
@@ -596,7 +604,7 @@
 </div></div></footer>
 
 <!-- float (desktop) -->
-<button class="wafloat" data-wa aria-label="Falar pelo WhatsApp">
+<button class="wafloat" data-bloco="cta-flutuante" data-wa aria-label="Falar pelo WhatsApp">
   <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3C9.4 3 4 8.4 4 15c0 2.1.6 4.2 1.6 6L4 29l8.2-1.5c1.8.9 3.7 1.4 5.8 1.4 6.6 0 12-5.4 12-12S22.6 3 16 3z"/></svg>
 </button>
 

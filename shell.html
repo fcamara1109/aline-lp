@@ -161,6 +161,12 @@
   .cred ul{list-style:none;display:grid;gap:10px;}
   .cred li{color:var(--nude);font-size:15px;font-weight:500;line-height:1.45;}
   .cred li b{font-weight:800;}
+  /* pendencia na barra vinho: o chip claro do .pend berrava mais alto que o unico
+     beneficio real do lado. mesma marcacao, tratamento de fundo escuro: fio tracejado
+     e texto no mesmo corpo dos outros dois, o selo e que carrega o sinal. */
+  .cred .pend{display:inline;background:none;border:0;border-bottom:1px dashed rgba(253,247,244,.45);
+    border-radius:0;color:var(--nude);font-size:15px;font-weight:500;padding:0 0 3px;}
+  .cred .confirmar{margin-left:0;margin-top:9px;display:table;}
 
   /* ===== quem e a Aline: retrato + prosa, nao mais uma parede de texto ===== */
   .sobre .foto{border-radius:18px;overflow:hidden;margin-bottom:var(--s5);}
@@ -453,9 +459,11 @@
     .chips{margin-top:20px;}
     .hero .cta{margin-top:22px;}
 
-    /* faixa de autoridade: centralizada no celular. balance evita a orfa
-       ("MG" sozinho na segunda linha) que o texto centralizado deixa exposta. */
+    /* barra de beneficios: centralizada no celular. balance evita a orfa
+       ("MG" sozinho na segunda linha) que o texto centralizado deixa exposta.
+       o selo e display:table, entao so margem auto centraliza ele junto. */
     .cred li{text-align:center;text-wrap:balance;}
+    .cred .confirmar{margin-left:auto;margin-right:auto;}
 
   }
 </style>
@@ -466,7 +474,7 @@
 <!-- End Google Tag Manager (noscript) -->
 
 <!-- NAV -->
-<nav class="nav">
+<nav class="nav" data-bloco="header">
   <a class="brand" href="/">
     <svg class="sym" viewBox="0 44 108 108" aria-hidden="true"><path d="M64 5 C71 14 78 25 80 39 C81 51 71 57 69 70 C67 84 70 97 75 109 C83 125 88 145 84 165 C80 181 70 191 63 197" fill="none" stroke="#5B1030" stroke-width="4.2" stroke-linecap="round"/><path d="M22 59 C32 71 41 76 49 75 C57 74 63 68 67 60" fill="none" stroke="#5B1030" stroke-width="4.2" stroke-linecap="round"/><path d="M16 148 C22 132 30 118 42 106" fill="none" stroke="#E0736F" stroke-width="4.2" stroke-linecap="round"/><path d="M25 130 C18 126 15 116 18 109 C25 112 29 121 25 130 Z" fill="#F0C4BE" stroke="#E0736F" stroke-width="3.8" stroke-linejoin="round"/><path d="M33 117 C35 108 43 101 50 100 C50 108 43 116 33 117 Z" fill="none" stroke="#E0736F" stroke-width="3.8" stroke-linejoin="round"/><path d="M28 106 C24 99 25 90 29 85 C34 90 34 100 28 106 Z" fill="#F0C4BE" stroke="#E0736F" stroke-width="3.8" stroke-linejoin="round"/></svg>
     <div>
@@ -485,7 +493,7 @@
 
 {{CONTENT}}
 
-<footer><div class="wrap"><div class="frow">
+<footer data-bloco="rodape"><div class="wrap"><div class="frow">
   <div class="fbrand">
     <svg class="sym" viewBox="0 44 108 108" aria-hidden="true"><path d="M64 5 C71 14 78 25 80 39 C81 51 71 57 69 70 C67 84 70 97 75 109 C83 125 88 145 84 165 C80 181 70 191 63 197" fill="none" stroke="#FDF7F4" stroke-width="4.2" stroke-linecap="round"/><path d="M22 59 C32 71 41 76 49 75 C57 74 63 68 67 60" fill="none" stroke="#FDF7F4" stroke-width="4.2" stroke-linecap="round"/><path d="M16 148 C22 132 30 118 42 106" fill="none" stroke="#E0736F" stroke-width="4.2" stroke-linecap="round"/></svg>
     <b>Dra. Aline Bonanato</b>
@@ -498,7 +506,7 @@
 </div></div></footer>
 
 <!-- float (desktop) -->
-<button class="wafloat" data-wa aria-label="Falar pelo WhatsApp">
+<button class="wafloat" data-bloco="cta-flutuante" data-wa aria-label="Falar pelo WhatsApp">
   <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3C9.4 3 4 8.4 4 15c0 2.1.6 4.2 1.6 6L4 29l8.2-1.5c1.8.9 3.7 1.4 5.8 1.4 6.6 0 12-5.4 12-12S22.6 3 16 3z"/></svg>
 </button>
 
