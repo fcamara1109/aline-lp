@@ -743,7 +743,7 @@
 (function(){
   var PHONE = '5531997359679';
   var GREETING = 'Oi! Vim pelo site. Minha pergunta é: ';
-  var WEBHOOK_URL = '';   // PLACEHOLDER: coletor de lead (n8n) ainda nao existe pra Aline; vazio = widget pula a captura
+  var WEBHOOK_URL = 'https://n8n.srv1732310.hstgr.cloud/webhook/widget-lead?t=aline'; // coletor n8n → BQ raw.events + aviso (linha da Aline na tabela clients, 05/09/2026)
 
   // ATRIBUICAO DE CAMPANHA (igual a LP da Marilia): le utm_*/gclid da URL e anexa
   // ao texto do WhatsApp, pra cada lead chegar com a campanha de origem.
@@ -773,7 +773,7 @@
   document.getElementById('wa-go').addEventListener('click', function(){
     var input=document.getElementById('wa-phone'), phone=waValidPhone(input.value);
     if(!phone){ waErr(input,true); return; }
-    if(WEBHOOK_URL){ var qq=new URLSearchParams(location.search); var sep=WEBHOOK_URL.indexOf('?')<0?'?':'&'; var qs='phone='+encodeURIComponent(phone)+'&gclid='+encodeURIComponent(qq.get('gclid')||''); try{ fetch(WEBHOOK_URL+sep+qs,{method:'POST',keepalive:true}); }catch(e){} }
+    if(WEBHOOK_URL){ var qq=new URLSearchParams(location.search); var sep=WEBHOOK_URL.indexOf('?')<0?'?':'&'; var qs='phone='+encodeURIComponent(phone)+'&ag='+encodeURIComponent(qq.get('ag')||'')+'&gclid='+encodeURIComponent(qq.get('gclid')||'')+'&gbraid='+encodeURIComponent(qq.get('gbraid')||'')+'&wbraid='+encodeURIComponent(qq.get('wbraid')||''); try{ fetch(WEBHOOK_URL+sep+qs,{method:'POST',keepalive:true}); }catch(e){} }
     show(s2);
   });
   document.getElementById('wa-back').addEventListener('click', function(){ show(s1); });
