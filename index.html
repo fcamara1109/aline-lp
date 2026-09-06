@@ -173,6 +173,13 @@
   /* ===== quem e a Aline: retrato + prosa, nao mais uma parede de texto ===== */
   .sobre .foto{border-radius:18px;overflow:hidden;margin-bottom:var(--s5);}
   .sobre .foto img{width:100%;height:auto;}
+  /* o metodo: 4 itens em 1 coluna no celular, 2x2 no desktop. eyebrow em terra,
+     porque coral nao passa sobre o vinho (2,7:1). */
+  .metodo .rot{color:var(--terra-no-vinho);}
+  .metodo .itens{display:grid;grid-template-columns:1fr;gap:var(--s5);margin-top:var(--s6);
+    padding-top:var(--s5);border-top:1px solid var(--linha-vinho);}
+  .metodo .item h3{color:var(--creme);}
+  .metodo .item p{margin-top:var(--s3);font-size:15.5px;color:var(--terra-no-vinho);line-height:1.65;}
   /* a credencial fecha o bloco como assinatura, separada por fio */
   .assina{margin-top:var(--s5);padding-top:var(--s4);border-top:1px solid var(--linha);
     font-size:14px;font-weight:700;letter-spacing:.01em;color:var(--terra-texto);}
@@ -330,6 +337,7 @@
     .porta-cta{text-align:center;}
     .sobre .grid{display:grid;grid-template-columns:.82fr 1.18fr;gap:clamp(32px,4.5vw,56px);align-items:start;}
     .sobre .foto{margin-bottom:0;}
+    .metodo .itens{grid-template-columns:1fr 1fr;gap:clamp(24px,3.5vw,40px) clamp(28px,4vw,48px);}
     .local{grid-template-columns:repeat(2,1fr);gap:clamp(28px,4vw,48px);}
     .passos p{padding:var(--s6) 0;font-size:18px;}
     .comfoto .grid{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(32px,4.5vw,56px);align-items:start;}
@@ -564,10 +572,40 @@
              alt="PLACEHOLDER: Dra. Aline Bonanato no consultório da Clínica Vitti">
       </div>
       <div>
-        <h2>Dra. Aline Bonanato</h2>
-        <p class="lead">Três coisas que ela não faz: indicar procedimento no primeiro minuto, tratar queixa que não precisa de tratamento, e prometer resultado. O que ela faz é explicar, e deixar a decisão com você.</p>
-        <p>Atende na Clínica Vitti, na agenda dela, e acompanha o parto de quem faz o pré-natal com ela. Quem marca com a Aline é atendida pela Aline.</p>
+        <span class="rot">Por que a Dra. Aline</span>
+        <h2>O que eu ensino na faculdade, eu uso com você.</h2>
+        <p>Sou professora de ginecologia na Faculdade de Ciências Médicas de Minas Gerais e faço parte do corpo clínico do Hospital Mater Dei Contorno. A ginecologia que dou em sala pra quem ainda vai ser médico é a mesma que entra na sua consulta: a que a literatura sustenta hoje, e não a moda da vez.</p>
+        <p>Meu jeito é prático. Você chega com uma queixa, a gente dá nome a ela e você sai com o próximo passo definido, seja um DIU, um pré-natal, uma sessão de laser ou consulta de retorno. Se não for caso de tratamento nenhum, você sai sabendo disso também.</p>
+        <p>Atendo na Clínica Vitti, e quem faz o pré-natal comigo tem a mim no dia do parto. Da contracepção à menopausa, é a mesma médica em cada fase, e cada fase se atravessa com ciência e confiança. Vamos juntas.</p>
         <p class="assina">Ginecologia e Obstetrícia · CRM-MG 75153 · RQE 50466</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- o metodo: continua o "por que a Aline" em fundo vinho, 4 itens (molde: "Como o CME
+     ajuda" da Marilia). Mesmo bloco `porque`: o verifica junta vizinhos colados. -->
+<section class="block bg-vinho metodo" data-bloco="porque">
+  <div class="wrap">
+    <span class="rot">O método</span>
+    <h2>Como eu te acompanho, fase por fase.</h2>
+    <p class="lead">O que muda de uma fase pra outra é a pergunta. O que não muda é o caminho: dar nome à queixa, ver o que a literatura sustenta pro seu caso, e decidir junto, com calma. Vale pro pré-natal, pro laser, pra estética e pro DIU.</p>
+    <div class="itens">
+      <div class="item">
+        <h3>Laser íntimo, onde a evidência sustenta</h3>
+        <p>Sou certificada na aplicação, e o laser entra depois do exame, nas queixas em que a literatura o apoia: atrofia da menopausa, ressecamento e dor na relação por queda hormonal.</p>
+      </div>
+      <div class="item">
+        <h3>Parto humanizado, com a mesma médica</h3>
+        <p>Quem faz o pré-natal comigo tem a mim na sala de parto, no Mater Dei Contorno, e a via de parto se decide junto, pelo que a gestação pede.</p>
+      </div>
+      <div class="item">
+        <h3>Estética íntima, pela sua autoestima</h3>
+        <p>Volume, assimetria ou cicatriz que incomoda quando você se olha, na roupa, no treino ou na relação: se incomoda, é assunto de consulta, e a decisão é sua, tomada depois, com calma.</p>
+      </div>
+      <div class="item">
+        <h3>Contracepção e menopausa, com ciência</h3>
+        <p>DIU hormonal, DIU de cobre, implante, e mais adiante a menopausa: em cada fase a escolha sai da ciência e do que você quer pro seu ciclo, e você atravessa sabendo o que esperar.</p>
       </div>
     </div>
   </div>
