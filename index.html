@@ -738,6 +738,17 @@
 (function(){
   var PHONE = '5531997359679';
   var GREETING = 'Oi! Vim pelo site. Minha pergunta é: ';
+  // ATRIBUICAO POR GRUPO DE ANUNCIO: uma bolinha por ad group, prefixada na 1a
+  // mensagem. O paciente ve so a cor; o atendimento descobre de qual anuncio veio.
+  // Mapa injetado do campanhas.json pelo build. Playbook em
+  // external/doctors/_shared/atribuicao-por-campanha/README.md
+  var CAMPANHAS = {"_doc": "Atribuicao por campanha: uma bolinha por grupo de anuncio, prefixada na 1a mensagem do WhatsApp. Playbook em external/doctors/_shared/atribuicao-por-campanha/README.md. A chave DEVE ser o ad_group_id do Google Ads (nome colide entre ids). Os ids so nascem quando a conta sobe; ate la a chave e o tempId do pending_changes.json e nenhum clique real casa, entao a LP nao prefixa nada. Depois do upload, rechavear com os ids reais: ./tools/pull.sh aline \"SELECT ad_group.id, ad_group.name, campaign.name FROM ad_group\" adgroups", "_pendente_upload": true, "ag-1": {"emoji": "🔴", "ad_group": "Ginecologista", "campanha": "Search - Servicos - Max. Cliques", "origem": "Consulta"}, "ag-2": {"emoji": "🟠", "ad_group": "Contracepcao e DIU", "campanha": "Search - Servicos - Max. Cliques", "origem": "Contracepcao"}, "ag-3": {"emoji": "🟡", "ad_group": "Pre-natal e Parto", "campanha": "Search - Servicos - Max. Cliques", "origem": "Parto"}, "ag-4": {"emoji": "🟢", "ad_group": "Laser Intimo", "campanha": "Search - Servicos - Max. Cliques", "origem": "Laser"}, "ag-5": {"emoji": "🔵", "ad_group": "Estetica Intima", "campanha": "Search - Servicos - Max. Cliques", "origem": "Estetica"}, "ag-6": {"emoji": "🟣", "ad_group": "Laser Intimo", "campanha": "Search - Servicos - CPC Manual", "origem": "Laser"}, "ag-7": {"emoji": "🟤", "ad_group": "Contracepcao e DIU", "campanha": "Search - Servicos - CPC Manual", "origem": "Contracepcao"}, "ag-8": {"emoji": "⚫", "ad_group": "Medico por Sintoma", "campanha": "Search - Genericos - Max. Cliques", "origem": "Consulta"}, "ag-9": {"emoji": "⚪", "ad_group": "Aline Bonanato", "campanha": "Search - Branding - CPC Manual", "origem": "Branding"}};
+  function adGroupEmoji(){
+    try{
+      var c = CAMPANHAS[new URLSearchParams(location.search).get('ag') || ''];
+      return c && c.emoji ? c.emoji + ' ' : '';
+    }catch(e){ return ''; }
+  }
   var WEBHOOK_URL = 'https://n8n.srv1732310.hstgr.cloud/webhook/widget-lead?t=aline'; // coletor n8n → BQ raw.events + aviso (linha da Aline na tabela clients, 05/09/2026)
 
   // ATRIBUICAO DE CAMPANHA (igual a LP da Marilia): le utm_*/gclid da URL e anexa
@@ -752,7 +763,7 @@
       return parts.length ? '\n\n[origem: '+parts.join(' · ')+']' : '';
     }catch(e){ return ''; }
   }
-  function waUrl(){ return 'https://api.whatsapp.com/send?phone='+PHONE+'&text='+encodeURIComponent(GREETING+campaignRef()); }
+  function waUrl(){ return 'https://api.whatsapp.com/send?phone='+PHONE+'&text='+encodeURIComponent(adGroupEmoji()+GREETING+campaignRef()); }
 
   var modal=document.getElementById('wa-modal'),s1=document.getElementById('wa-s1'),s2=document.getElementById('wa-s2');
   function show(el){ s1.classList.remove('active'); s2.classList.remove('active'); el.classList.add('active'); }
