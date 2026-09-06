@@ -427,6 +427,10 @@
     border-radius:3px;background:var(--coral-texto)}
   /* o hero e decisao fechada: mantem a medida que ele ja tinha, nao a de prosa */
   .hero-copy .lead{margin-top:22px;font-size:clamp(17px,2.3vw,20px);max-width:640px}
+  /* credencial em cards curtos, um fato por card, sem link (molde do Fred) */
+  .creds{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 0;padding:0;list-style:none}
+  .creds li{display:inline-block;background:var(--creme);border:1px solid var(--linha);border-radius:99px;
+    padding:8px 14px;font-size:14px;font-weight:600;line-height:1.35;color:var(--tinta)}
   .chips{display:flex;flex-wrap:wrap;gap:9px;margin-top:24px;padding:0;list-style:none}
   .chips a{display:inline-block;background:var(--creme);border:1px solid var(--linha);border-radius:99px;
     padding:10px 17px;font-size:15px;font-weight:600;color:var(--vinho);text-decoration:none;
@@ -460,12 +464,13 @@
     /* nome ja esta no topo e o registro na linha acima: sobre a foto fica so a prova */
     .hero-panel .badge{display:none;}
     .hero-panel .doc{display:flex;}
-    .pend-selo{display:block;order:2;}
 
     .hero-copy{order:3;margin-top:24px;display:flex;flex-direction:column;}
-    .hero-copy .cred-line{order:-1;margin:0 0 13px;padding-left:0;font-size:15.5px;
+    /* manchete primeiro, credencial embaixo dela em cards (Felipe, 05/09/2026) */
+    .hero-copy .cred-line{margin:13px 0 0;padding-left:0;font-size:15.5px;
       font-weight:600;line-height:1.45;color:var(--apoio);max-width:38ch;}
     .hero-copy .cred-line::before{display:none;}
+    .creds{margin-top:14px;}
     .hero-copy .lead{margin-top:18px;}
     .chips{margin-top:20px;}
     .hero .cta{margin-top:22px;}
@@ -501,8 +506,11 @@
   <div class="wrap">
     <p class="hero-reg">CRM-MG 75153 · RQE 50466</p>
     <div class="hero-copy">
-      <h1>Saúde e estética íntima <span class="hi">em Belo Horizonte.</span></h1>
-      <p class="cred-line">Professora de ginecologia na Faculdade de Ciências Médicas e médica do corpo clínico do Mater Dei.</p>
+      <h1>Saúde e <span class="hi">estética íntima.</span></h1>
+      <ul class="creds">
+        <li>Professora de ginecologia na Faculdade de Ciências Médicas</li>
+        <li>Corpo clínico do Hospital Mater Dei</li>
+      </ul>
       <ul class="chips">
         <li><a href="#porta-parto">Parto humanizado</a></li>
         <li><a href="#porta-laser">Laser íntimo</a></li>
@@ -514,9 +522,8 @@
     <div class="hero-panel">
       <img class="pimg" src="fotos/ph-hero.jpg" width="900" height="1120" alt="PLACEHOLDER: retrato da Dra. Aline Bonanato no consultório" fetchpriority="high">
       <span class="badge"><svg class="sym" viewBox="0 44 108 108" aria-hidden="true"><path d="M64 5 C71 14 78 25 80 39 C81 51 71 57 69 70 C67 84 70 97 75 109 C83 125 88 145 84 165 C80 181 70 191 63 197" fill="none" stroke="#5B1030" stroke-width="4.2" stroke-linecap="round"/><path d="M22 59 C32 71 41 76 49 75 C57 74 63 68 67 60" fill="none" stroke="#5B1030" stroke-width="4.2" stroke-linecap="round"/><path d="M16 148 C22 132 30 118 42 106" fill="none" stroke="#E0736F" stroke-width="4.2" stroke-linecap="round"/></svg><span><b>Dra. Aline Bonanato</b>CRM-MG 75153 · RQE 50466</span></span>
-      <span class="doc" data-provisorio><span class="n">5,0</span><span class="det"><span class="stars" aria-hidden="true">★★★★★</span><span class="s">Doctoralia · 12 opiniões</span></span></span>
+      
     </div>
-    <p class="pend-selo">PLACEHOLDER: nota do Doctoralia<span class="confirmar">a confirmar</span></p>
   </div>
 </section>
 
