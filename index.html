@@ -320,7 +320,9 @@
     .navcta .curto{display:none;} .navcta .longo{display:inline;}
     .hero .wrap{padding-top:60px;padding-bottom:64px;display:grid;grid-template-columns:1.04fr .96fr;gap:50px;align-items:center;}
     .hero-copy{max-width:none;} .hero .cta{width:auto;} .hero .microcopy{text-align:left;}
-    .hero-panel{margin-top:0;}
+    /* moldura na proporcao da foto do Fred (~7:5): foto mais baixa, espaco vai pro texto */
+    .hero-panel{margin-top:0;aspect-ratio:7/5;}
+    .hero-panel .pimg{position:absolute;inset:0;height:100%;object-position:50% 22%;}
     .hero-panel .badge{top:18px;left:18px;padding:11px 17px;gap:12px;}
     .hero-panel .badge .sym{width:32px;height:32px;} .hero-panel .badge b{font-size:18px;} .hero-panel .badge span{font-size:13px;}
     .cred ul{grid-template-columns:repeat(3,1fr);gap:30px;}
@@ -462,7 +464,7 @@
     .hero .wrap{display:flex;flex-direction:column;padding-top:16px;padding-bottom:38px;}
     .hero-reg{display:block;order:0;margin:0 0 13px;font-size:13px;font-weight:800;letter-spacing:.13em;
       text-transform:uppercase;color:var(--terra-texto);}
-    .hero-panel{order:1;margin-top:0;aspect-ratio:1/1;}
+    .hero-panel{order:1;margin-top:0;aspect-ratio:7/5;}
     /* a foto preenche o quadro em vez de ditar a altura dele: retrato vertical
        cortado no alto da cabeca, sem comer a dobra inteira */
     .hero-panel .pimg{position:absolute;inset:0;height:100%;object-position:50% 22%;}
@@ -478,7 +480,8 @@
     .creds{margin-top:14px;}
     .hero-copy .lead{margin-top:18px;}
     .chips{margin-top:20px;}
-    .hero .cta{margin-top:22px;}
+    /* o botao do hero sai: o WhatsApp flutuante ja e o CTA permanente no celular */
+    .hero .cta{display:none;}
 
     /* barra de beneficios: centralizada no celular. balance evita a orfa
        ("MG" sozinho na segunda linha) que o texto centralizado deixa exposta.
