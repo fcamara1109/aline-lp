@@ -60,6 +60,8 @@
 
   h1{font-family:var(--serif);font-weight:400;font-size:clamp(31px,7.4vw,52px);line-height:1.1;letter-spacing:-.015em;color:var(--vinho);text-wrap:balance;}
   h1 .hi{color:var(--coral-texto);}
+  /* segunda frase da manchete: linha propria, menor e em coral (Felipe, 06/09/2026) */
+  h1 .h1-sub{display:block;margin-top:.35em;font-size:.8em;color:var(--coral-texto);}
   h2{font-family:var(--serif);font-weight:400;font-size:clamp(26px,5.6vw,38px);line-height:1.15;letter-spacing:-.012em;color:var(--vinho);text-wrap:balance;}
   h3{font-family:var(--serif);font-weight:400;font-size:20px;line-height:1.25;color:var(--vinho);}
   .lead{font-size:clamp(17px,4.2vw,19px);color:var(--tinta-soft);line-height:1.6;max-width:46ch;}
@@ -238,11 +240,8 @@
     color:var(--terra-no-vinho);font-size:17px;line-height:1.6;max-width:var(--medida);text-wrap:pretty;}
   .negativas li b{color:var(--creme);font-weight:700;}
 
-  /* ===== FAQ: indice agrupado por porta, fio por pergunta, nao 16 caixinhas ===== */
+  /* ===== FAQ: lista unica, fio por pergunta, nao 16 caixinhas (Felipe, 06/09/2026) ===== */
   .faq{margin-top:var(--s6);}
-  .grupo + .grupo{margin-top:var(--s7);}
-  .grupo > h3{font-family:var(--serif);font-weight:400;font-size:19px;color:var(--coral-texto);
-    margin-bottom:var(--s2);}
   details{border-top:1px solid var(--linha);}
   .grupo details:last-of-type{border-bottom:1px solid var(--linha);}
   summary{cursor:pointer;list-style:none;padding:15px 36px 15px 0;min-height:52px;position:relative;
@@ -345,15 +344,8 @@
     .duas > h2{grid-column:1;grid-row:1;}
     .duas > :not(h2){grid-column:2;max-width:none;}
     .duas > :not(h2):first-of-type{margin-top:0;}
-    /* o FAQ e alto demais pra deixar 40% vazio ao lado: quem desce pra coluna da
-       esquerda e o rotulo do grupo, que e o que a paciente escaneia. */
-    .faq{max-width:none;}
-    /* so column-gap: gap solto poria 50px entre cada pergunta, porque cada
-       details e uma linha da grade. o fio entre perguntas e o separador. */
-    .grupo{display:grid;grid-template-columns:.4fr .6fr;
-      column-gap:clamp(28px,4vw,56px);row-gap:0;align-items:start;}
-    .grupo > h3{grid-column:1;grid-row:1;margin-bottom:0;padding-top:15px;}
-    .grupo > details{grid-column:2;}
+    /* FAQ sem rotulo de grupo: o h2 ancora a esquerda (.duas) e a lista ocupa a direita */
+    .faq{max-width:none;margin-top:0;}
     .queixa{display:grid;grid-template-columns:.4fr .6fr;gap:clamp(28px,4vw,56px);align-items:start;padding:var(--s6) 0;}
     .queixa h3{margin:0;}
     .proc{display:grid;grid-template-columns:.4fr .6fr;gap:clamp(28px,4vw,56px);align-items:start;padding:var(--s5) 0;}
@@ -431,18 +423,18 @@
   .hero-copy .lead{margin-top:22px;font-size:clamp(17px,2.3vw,20px);max-width:640px}
   /* credencial em cards curtos, um fato por card, sem link (molde do Fred) */
   .creds{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 0;padding:0;list-style:none}
-  .creds li{display:inline-flex;align-items:center;gap:7px;padding:0;font-size:14.5px;font-weight:600;
-    line-height:1.35;color:var(--terra-texto)}
-  .creds li::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--coral-texto);flex:0 0 auto}
+  /* chip pilula como no site do Fred: nude um tom mais escuro, texto vinho, sem bolinha */
+  .creds li{display:inline-block;padding:8px 14px;border-radius:999px;background:#F0DFD7;
+    font-size:14px;font-weight:600;line-height:1.35;color:var(--vinho)}
   .chips{display:flex;flex-wrap:wrap;gap:9px;margin-top:24px;padding:0;list-style:none}
   .chips a{display:inline-block;background:var(--creme);border:1px solid var(--linha);border-radius:99px;
     padding:10px 17px;font-size:15px;font-weight:600;color:var(--vinho);text-decoration:none;
     transition:background .15s,border-color .15s}
   .chips a:hover{background:#fff;border-color:var(--coral-texto)}
-  /* chips na barra vinho: mesmo formato, cores invertidas */
+  /* chips na barra vinho: fundo nude claro e texto vinho, pra contrastar com a barra */
   .cred .chips{display:flex;flex-wrap:wrap;margin:0;justify-content:center;gap:10px}
-  .cred .chips a{background:rgba(253,247,244,.12);border-color:rgba(253,247,244,.35);color:var(--nude)}
-  .cred .chips a:hover{background:rgba(253,247,244,.22);border-color:var(--nude)}
+  .cred .chips a{background:var(--nude);border-color:var(--nude);color:var(--vinho)}
+  .cred .chips a:hover{background:#fff;border-color:#fff}
   @media(min-width:760px){.portas{grid-template-columns:1fr 1fr}}
 
   /* ===== primeira tela do celular: registro, foto, copy =====
@@ -514,12 +506,12 @@
   <div class="wrap">
     <p class="hero-reg">CRM-MG 75153 · RQE 50466</p>
     <div class="hero-copy">
-      <h1>Saúde e estética íntima <span class="hi">pelas suas fases de vida.</span> Com ciência, confiança e conforto.</h1>
+      <h1>Saúde e estética íntima <span class="hi">pelas suas fases de vida.</span> <span class="h1-sub">Com ciência, confiança e conforto.</span></h1>
       <ul class="creds">
         <li>Professora na FCMMG</li>
         <li>Corpo clínico do Mater Dei</li>
       </ul>
-      <p class="lead">Vamos juntas, da primeira consulta ao pós-parto e da contracepção à menopausa.</p>
+      <p class="lead">Vamos juntas, da primeira consulta ao pós-parto, e da contracepção à menopausa.</p>
       <button class="cta" data-wa><svg class="wa" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3C9.4 3 4 8.4 4 15c0 2.1.6 4.2 1.6 6L4 29l8.2-1.5c1.8.9 3.7 1.4 5.8 1.4 6.6 0 12-5.4 12-12S22.6 3 16 3z"/></svg>Marcar consulta</button>
     </div>
     <div class="hero-panel">
@@ -564,18 +556,6 @@
   </div>
 </section>
 
-<section class="block ar bg-creme" data-bloco="porque">
-  <div class="wrap duas">
-    <h2>Como funciona</h2>
-    <div class="passos">
-      <p>Você conta o que está sentindo com as palavras que quiser. Aqui se diz vulva, sexo e dor na relação sem rodeio, e não existe assunto que deixe alguém sem graça.</p>
-      <p>Depois vem o exame e a explicação: o que é, o que não é, e o que vale a pena fazer. Se não for caso de tratamento nenhum, você sai sabendo disso também. Vale igual pra queixa de saúde e pra queixa de estética.</p>
-      <p>Quando existe indicação de procedimento, ele vem com o que trata, o que não trata e o que a literatura mostra até hoje. E é decidido depois, com calma, nunca no mesmo minuto em que foi apresentado.</p>
-    </div>
-    <p class="fecha">Você não fica no vácuo entre uma consulta e outra.</p>
-  </div>
-</section>
-
 <section class="block bg-nude sobre" data-bloco="porque">
   <div class="wrap">
     <div class="grid">
@@ -597,28 +577,15 @@
      Ate la o bloco esta isento no README (tabela de desvios). -->
 
 <section class="block bg-nude" data-bloco="faq">
-  <div class="wrap">
+  <div class="wrap duas">
     <h2>O que costumam perguntar</h2>
     <div class="faq">
       <div class="grupo">
-        <h3>Sobre a consulta</h3>
         <details><summary>Preciso levar exames? Posso ir menstruada?</summary><div class="a">Leve o que tiver, mesmo antigo: ajuda a entender a história. Menstruada pode vir. A conversa e a maior parte do exame acontecem do mesmo jeito, e o que depender do ciclo fica pra outro dia.</div></details>
-      </div>
-      <div class="grupo">
-        <h3>Laser e saúde íntima</h3>
         <details><summary>O laser serve pra qualquer mulher?</summary><div class="a">Não. Ele é uma opção pra algumas queixas, como ressecamento, dor na relação e perda de urina, e só depois do exame. Tem caso em que outra conduta resolve melhor, e tem caso em que não precisa de nada.</div></details>
-      </div>
-      <div class="grupo">
-        <h3>Estética íntima</h3>
         <details><summary>Não gosto da aparência da minha vulva. Isso é bobagem minha?</summary><div class="a">Não. Se incomoda, é motivo pra perguntar. A conversa começa pelo que dá pra fazer, pelo que não dá, e pelo que não precisa ser feito. A decisão é sua, e vem depois, com calma.</div></details>
-      </div>
-      <div class="grupo">
-        <h3>Gravidez e parto</h3>
         <details><summary>Você acompanha o parto ou é uma equipe? Em qual hospital?</summary><div class="a">A Aline acompanha o parto das pacientes que fazem o pré-natal com ela, no Hospital Mater Dei, em Belo Horizonte.</div></details>
         <details><summary>Parto humanizado quer dizer que você não faz cesárea?</summary><div class="a">Não. Quer dizer que a via de parto é decidida com você, pelo que a gestação pede, e explicada antes. Cesárea com indicação também é parto respeitado.</div></details>
-      </div>
-      <div class="grupo">
-        <h3>A pergunta que quase ninguém escreve</h3>
         <details><summary>Nunca fui a uma ginecologista com quem me sinta à vontade. Como é a primeira consulta?</summary><div class="a">Começa por conversa, com as palavras que você quiser usar. O exame vem depois, explicado antes de acontecer, e nada é feito sem você saber o que é e por quê.</div></details>
       </div>
     </div>
@@ -636,12 +603,12 @@
     <div class="local">
       <div class="box">
         <span class="lbl">Consultório</span>
-        <p><b>Clínica Vitti</b><br>Belo Horizonte, MG</p>
+        <p><b>Clínica Vitti</b><br>Av. do Contorno, 9787, 1º andar, Prado<br>Belo Horizonte, MG</p>
         <p>Consultas às segundas-feiras, com hora marcada.</p>
       </div>
       <div class="box">
         <span class="lbl">Parto e internação</span>
-        <p><b>Hospital Mater Dei</b><br>Belo Horizonte, MG</p>
+        <p><b>Hospital Mater Dei Contorno</b><br>Av. do Contorno, 9000, Barro Preto<br>Belo Horizonte, MG</p>
         <p>Para as pacientes que fazem o pré-natal comigo.</p>
       </div>
     </div>
@@ -653,7 +620,6 @@
     <svg class="sym" viewBox="0 44 108 108" aria-hidden="true"><path d="M64 5 C71 14 78 25 80 39 C81 51 71 57 69 70 C67 84 70 97 75 109 C83 125 88 145 84 165 C80 181 70 191 63 197" fill="none" stroke="#FDF7F4" stroke-width="4.2" stroke-linecap="round"/><path d="M22 59 C32 71 41 76 49 75 C57 74 63 68 67 60" fill="none" stroke="#FDF7F4" stroke-width="4.2" stroke-linecap="round"/><path d="M16 148 C22 132 30 118 42 106" fill="none" stroke="#E0736F" stroke-width="4.2" stroke-linecap="round"/></svg>
     <h2>Escreva o que está sentindo, com as palavras que quiser.</h2>
     <button class="cta on-dark" data-wa><svg class="wa" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3C9.4 3 4 8.4 4 15c0 2.1.6 4.2 1.6 6L4 29l8.2-1.5c1.8.9 3.7 1.4 5.8 1.4 6.6 0 12-5.4 12-12S22.6 3 16 3z"/></svg>Falar no WhatsApp</button>
-    <p class="micro">A resposta vem da própria clínica, com horário e valor da consulta.</p>
   </div>
 </section>
 
