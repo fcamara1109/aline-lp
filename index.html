@@ -429,8 +429,9 @@
   .hero-copy .lead{margin-top:22px;font-size:clamp(17px,2.3vw,20px);max-width:640px}
   /* credencial em cards curtos, um fato por card, sem link (molde do Fred) */
   .creds{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 0;padding:0;list-style:none}
-  .creds li{display:inline-block;background:var(--creme);border:1px solid var(--linha);border-radius:99px;
-    padding:8px 14px;font-size:14px;font-weight:600;line-height:1.35;color:var(--tinta)}
+  .creds li{display:inline-flex;align-items:center;gap:7px;padding:0;font-size:14.5px;font-weight:600;
+    line-height:1.35;color:var(--terra-texto)}
+  .creds li::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--coral-texto);flex:0 0 auto}
   .chips{display:flex;flex-wrap:wrap;gap:9px;margin-top:24px;padding:0;list-style:none}
   .chips a{display:inline-block;background:var(--creme);border:1px solid var(--linha);border-radius:99px;
     padding:10px 17px;font-size:15px;font-weight:600;color:var(--vinho);text-decoration:none;
@@ -508,13 +509,13 @@
     <div class="hero-copy">
       <h1>Saúde e <span class="hi">estética íntima.</span></h1>
       <ul class="creds">
-        <li>Professora de ginecologia na Faculdade de Ciências Médicas</li>
-        <li>Corpo clínico do Hospital Mater Dei</li>
+        <li>Professora na FCMMG</li>
+        <li>Corpo clínico do Mater Dei</li>
       </ul>
       <ul class="chips">
         <li><a href="#porta-parto">Parto humanizado</a></li>
         <li><a href="#porta-laser">Laser íntimo</a></li>
-        <li><a href="#porta-estetica">Estética avançada</a></li>
+        <li><a href="#porta-estetica">Estética íntima</a></li>
         <li><a href="#porta-contracepcao">Contracepção</a></li>
       </ul>
       <button class="cta" data-wa><svg class="wa" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3C9.4 3 4 8.4 4 15c0 2.1.6 4.2 1.6 6L4 29l8.2-1.5c1.8.9 3.7 1.4 5.8 1.4 6.6 0 12-5.4 12-12S22.6 3 16 3z"/></svg>Marcar consulta</button>
@@ -530,8 +531,8 @@
 <section class="cred" data-bloco="beneficios">
   <div class="wrap"><ul>
     <li>Consultas às <b>segundas-feiras</b>, com hora marcada</li>
-    <li><span class="pend">PLACEHOLDER: se atende convênio, e quais</span><span class="confirmar">a confirmar</span></li>
-    <li><span class="pend">PLACEHOLDER: em quanto tempo ela responde no WhatsApp</span><span class="confirmar">a confirmar</span></li>
+    <li>A <b>mesma médica</b> do pré-natal ao parto</li>
+    <li>Resposta pelo <b>WhatsApp</b>, direto da clínica</li>
   </ul></div>
 </section>
 
@@ -548,8 +549,8 @@
         <p>Ressecamento, dor na relação, perda de urina ao tossir ou correr, incômodo que sobrou do parto. Tem nome, tem causa e tem o que fazer. O laser é uma das opções, e não serve pra toda queixa.</p>
       </div>
       <div class="porta" id="porta-estetica" tabindex="-1">
-        <h3>Estética avançada</h3>
-        <p>Volume, flacidez, assimetria, marca de cicatriz. Se te incomoda, já é motivo suficiente pra perguntar. A conversa começa pelo que dá pra fazer, pelo que não dá, e pelo que não precisa ser feito.</p>
+        <h3>Estética íntima</h3>
+        <p>Volume, flacidez, assimetria ou cicatriz que incomoda quando você se olha ou na relação. Se incomoda, já é motivo pra perguntar. A conversa começa pelo que dá pra fazer, pelo que não dá, e pelo que não precisa ser feito.</p>
       </div>
       <div class="porta" id="porta-contracepcao" tabindex="-1">
         <h3>Contracepção</h3>
@@ -560,24 +561,7 @@
   </div>
 </section>
 
-<section class="block bg-creme sobre" data-bloco="porque">
-  <div class="wrap">
-    <div class="grid">
-      <div class="foto">
-        <img src="fotos/ph-sobre.jpg" width="900" height="720" loading="lazy"
-             alt="PLACEHOLDER: Dra. Aline Bonanato no consultório da Clínica Vitti">
-      </div>
-      <div>
-        <h2>Dra. Aline Bonanato</h2>
-        <p class="lead">Dá aula de ginecologia pra quem ainda vai ser médico, e atende no consultório na mesma semana. O que ela ensina na faculdade é o que ela usa na consulta: o que é, o que não é, e o que vale a pena fazer.</p>
-        <p>Acompanha os partos das próprias pacientes no Mater Dei. Atende na Clínica Vitti, em Belo Horizonte, na agenda dela. Quem marca com a Aline é atendida pela Aline.</p>
-        <p class="assina">Ginecologia e Obstetrícia · CRM-MG 75153 · RQE 50466</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="block ar bg-nude" data-bloco="porque">
+<section class="block ar bg-creme" data-bloco="porque">
   <div class="wrap duas">
     <h2>Como funciona</h2>
     <div class="passos">
@@ -589,17 +573,25 @@
   </div>
 </section>
 
-<!-- prova social (bloco 7) vem ANTES do FAQ: o relato aquece, o FAQ desarma.
-     invertido, a paciente entra na objecao sem ter comprado nada ainda. -->
-<section class="block bg-creme" data-bloco="prova">
-  <div class="wrap duas">
-    <h2>Nas palavras de quem já veio</h2>
-    <div class="depo">
-      <p><span class="pend">PLACEHOLDER: 3 relatos a coletar com a Aline, um deles de paciente que veio por estética</span></p>
-      <p>Cada relato é publicado com autorização por escrito da paciente.</p>
+<section class="block bg-nude sobre" data-bloco="porque">
+  <div class="wrap">
+    <div class="grid">
+      <div class="foto">
+        <img src="fotos/ph-sobre.jpg" width="900" height="720" loading="lazy"
+             alt="PLACEHOLDER: Dra. Aline Bonanato no consultório da Clínica Vitti">
+      </div>
+      <div>
+        <h2>Dra. Aline Bonanato</h2>
+        <p class="lead">Três coisas que ela não faz: indicar procedimento no primeiro minuto, tratar queixa que não precisa de tratamento, e prometer resultado. O que ela faz é explicar, e deixar a decisão com você.</p>
+        <p>Atende na Clínica Vitti, na agenda dela, e acompanha o parto de quem faz o pré-natal com ela. Quem marca com a Aline é atendida pela Aline.</p>
+        <p class="assina">Ginecologia e Obstetrícia · CRM-MG 75153 · RQE 50466</p>
+      </div>
     </div>
   </div>
 </section>
+
+<!-- depoimentos (bloco prova): entram quando a Aline mandar os 3 relatos autorizados.
+     Ate la o bloco esta isento no README (tabela de desvios). -->
 
 <section class="block bg-nude" data-bloco="faq">
   <div class="wrap">
@@ -607,32 +599,24 @@
     <div class="faq">
       <div class="grupo">
         <h3>Sobre a consulta</h3>
-        <details><summary>Quanto custa a consulta e quanto tempo dura?</summary><div class="a"><span class="pend">PLACEHOLDER: resposta a escrever com a Aline</span></div></details>
-        <details><summary>Atende por convênio?</summary><div class="a"><span class="pend">PLACEHOLDER: resposta a escrever com a Aline</span></div></details>
-        <details><summary>Preciso levar exames? Posso ir menstruada?</summary><div class="a"><span class="pend">PLACEHOLDER: resposta a escrever com a Aline</span></div></details>
+        <details><summary>Preciso levar exames? Posso ir menstruada?</summary><div class="a">Leve o que tiver, mesmo antigo: ajuda a entender a história. Menstruada pode vir. A conversa e a maior parte do exame acontecem do mesmo jeito, e o que depender do ciclo fica pra outro dia.</div></details>
       </div>
       <div class="grupo">
         <h3>Laser e saúde íntima</h3>
-        <details><summary>Estou na menopausa, com ressecamento e dor na relação. Isso tem tratamento?</summary><div class="a"><span class="pend">PLACEHOLDER: resposta a escrever com a Aline</span></div></details>
-        <details><summary>O laser serve pra qualquer mulher?</summary><div class="a"><span class="pend">PLACEHOLDER: resposta a escrever com a Aline</span></div></details>
+        <details><summary>O laser serve pra qualquer mulher?</summary><div class="a">Não. Ele é uma opção pra algumas queixas, como ressecamento, dor na relação e perda de urina, e só depois do exame. Tem caso em que outra conduta resolve melhor, e tem caso em que não precisa de nada.</div></details>
       </div>
       <div class="grupo">
         <h3>Estética íntima</h3>
-        <details><summary>Não gosto da aparência da minha vulva. Isso é bobagem minha?</summary><div class="a"><span class="pend">PLACEHOLDER: resposta a escrever com a Aline</span></div></details>
-        <details><summary>Quais procedimentos estéticos você faz, e quais você não faz?</summary><div class="a"><span class="pend">PLACEHOLDER: resposta a escrever com a Aline</span></div></details>
-      </div>
-      <div class="grupo">
-        <h3>Contracepção</h3>
-        <details><summary>Coloca DIU na própria consulta ou precisa marcar outro dia?</summary><div class="a"><span class="pend">PLACEHOLDER: resposta a escrever com a Aline</span></div></details>
+        <details><summary>Não gosto da aparência da minha vulva. Isso é bobagem minha?</summary><div class="a">Não. Se incomoda, é motivo pra perguntar. A conversa começa pelo que dá pra fazer, pelo que não dá, e pelo que não precisa ser feito. A decisão é sua, e vem depois, com calma.</div></details>
       </div>
       <div class="grupo">
         <h3>Gravidez e parto</h3>
-        <details><summary>Você acompanha o parto ou é uma equipe? Em qual hospital?</summary><div class="a"><span class="pend">PLACEHOLDER: resposta a escrever com a Aline</span></div></details>
-        <details><summary>Parto humanizado quer dizer que você não faz cesárea?</summary><div class="a"><span class="pend">PLACEHOLDER: resposta a escrever com a Aline</span></div></details>
+        <details><summary>Você acompanha o parto ou é uma equipe? Em qual hospital?</summary><div class="a">A Aline acompanha o parto das pacientes que fazem o pré-natal com ela, no Hospital Mater Dei, em Belo Horizonte.</div></details>
+        <details><summary>Parto humanizado quer dizer que você não faz cesárea?</summary><div class="a">Não. Quer dizer que a via de parto é decidida com você, pelo que a gestação pede, e explicada antes. Cesárea com indicação também é parto respeitado.</div></details>
       </div>
       <div class="grupo">
         <h3>A pergunta que quase ninguém escreve</h3>
-        <details><summary>Nunca fui a uma ginecologista com quem me sinta à vontade. Como é a primeira consulta?</summary><div class="a"><span class="pend">PLACEHOLDER: resposta a escrever com a Aline</span></div></details>
+        <details><summary>Nunca fui a uma ginecologista com quem me sinta à vontade. Como é a primeira consulta?</summary><div class="a">Começa por conversa, com as palavras que você quiser usar. O exame vem depois, explicado antes de acontecer, e nada é feito sem você saber o que é e por quê.</div></details>
       </div>
     </div>
   </div>
@@ -649,7 +633,7 @@
     <div class="local">
       <div class="box">
         <span class="lbl">Consultório</span>
-        <p><b>Clínica Vitti</b><br><span class="pend">PLACEHOLDER: endereço completo a confirmar</span><br>Belo Horizonte, MG</p>
+        <p><b>Clínica Vitti</b><br>Belo Horizonte, MG</p>
         <p>Consultas às segundas-feiras, com hora marcada.</p>
       </div>
       <div class="box">
