@@ -437,6 +437,10 @@
     padding:10px 17px;font-size:15px;font-weight:600;color:var(--vinho);text-decoration:none;
     transition:background .15s,border-color .15s}
   .chips a:hover{background:#fff;border-color:var(--coral-texto)}
+  /* chips na barra vinho: mesmo formato, cores invertidas */
+  .cred .chips{display:flex;flex-wrap:wrap;margin:0;justify-content:center;gap:10px}
+  .cred .chips a{background:rgba(253,247,244,.12);border-color:rgba(253,247,244,.35);color:var(--nude)}
+  .cred .chips a:hover{background:rgba(253,247,244,.22);border-color:var(--nude)}
   @media(min-width:760px){.portas{grid-template-columns:1fr 1fr}}
 
   /* ===== primeira tela do celular: registro, foto, copy =====
@@ -512,12 +516,7 @@
         <li>Professora na FCMMG</li>
         <li>Corpo clínico do Mater Dei</li>
       </ul>
-      <ul class="chips">
-        <li><a href="#porta-parto">Parto humanizado</a></li>
-        <li><a href="#porta-laser">Laser íntimo</a></li>
-        <li><a href="#porta-estetica">Estética íntima</a></li>
-        <li><a href="#porta-contracepcao">Contracepção</a></li>
-      </ul>
+
       <button class="cta" data-wa><svg class="wa" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3C9.4 3 4 8.4 4 15c0 2.1.6 4.2 1.6 6L4 29l8.2-1.5c1.8.9 3.7 1.4 5.8 1.4 6.6 0 12-5.4 12-12S22.6 3 16 3z"/></svg>Marcar consulta</button>
     </div>
     <div class="hero-panel">
@@ -529,11 +528,12 @@
 </section>
 
 <section class="cred" data-bloco="beneficios">
-  <div class="wrap"><ul>
-    <li>Consultas às <b>segundas-feiras</b>, com hora marcada</li>
-    <li>A <b>mesma médica</b> do pré-natal ao parto</li>
-    <li>Resposta pelo <b>WhatsApp</b>, direto da clínica</li>
-  </ul></div>
+  <div class="wrap"><ul class="chips">
+      <li><a href="#porta-parto">Parto humanizado</a></li>
+      <li><a href="#porta-laser">Laser íntimo</a></li>
+      <li><a href="#porta-estetica">Estética íntima</a></li>
+      <li><a href="#porta-contracepcao">Contracepção</a></li>
+    </ul></div>
 </section>
 
 <section class="block ar bg-nude" data-bloco="servicos">
