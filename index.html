@@ -272,7 +272,7 @@
   .relato figcaption{padding:var(--s3) var(--s4) var(--s4);font-size:14.5px;line-height:1.5;color:var(--tinta-soft);}
 
   /* faixa de ambiente: respiro de imagem entre dois blocos de texto.
-     e full-bleed de proposito, e a unica coisa da pagina que encosta na borda. */
+     no celular e full-bleed; no desktop fica contida no wrap. */
   .faixa img{width:100%;height:clamp(200px,30vw,400px);object-fit:cover;object-position:center;}
 
   /* bloco tecnico com o aparelho ao lado: publico de decisao quer ver o equipamento */
@@ -324,6 +324,8 @@
   /* ===== desktop ===== */
   @media (min-width:821px){
     .wrap{padding:0 40px;}
+    .faixa{max-width:1140px;margin:0 auto;padding:0 40px;}
+    .faixa img{height:auto;aspect-ratio:2/1;border-radius:18px;object-position:center top;}
     .nav{padding:14px 40px;}
     .brand .sym{width:36px;height:36px;} .brand .wm{font-size:22px;} .brand .tag{display:block;font-size:13.5px;}
     .navcta{font-size:15px;padding:10px 20px;}
@@ -682,13 +684,13 @@
 </section>
 
 <section class="faixa" data-bloco="local">
-  <img src="fotos/aline-faixa.jpg" width="1600" height="620" loading="lazy"
+  <img src="fotos/aline-faixa.jpg" width="1600" height="800" loading="lazy"
        alt="Dra. Aline Bonanato sentada no consultório da Clínica Vitti, em Belo Horizonte">
 </section>
 
 <section class="block bg-nude" data-bloco="local">
   <div class="wrap">
-    <h2>Vamos marcar</h2>
+    <h2>Onde estou</h2>
     <div class="local">
       <div class="box">
         <span class="lbl">Consultório</span>
