@@ -12,19 +12,19 @@
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <link rel="apple-touch-icon" href="assets/favicon-180.png">
 <title>Ginecologista e obstetra em BH · Dra. Aline Bonanato</title>
-<meta name="description" content="Saúde e estética íntima em Belo Horizonte. Professora de ginecologia na Faculdade de Ciências Médicas e corpo clínico do Mater Dei. CRM-MG 75153 · RQE 50466.">
+<meta name="description" content="Ginecologista e obstetra em Belo Horizonte. Pré-natal e parto no Mater Dei, laser e estética íntima, contracepção e menopausa. Professora na FCMMG. CRM-MG 75153 · RQE 50466.">
 <link rel="canonical" href="https://abonanato.com.br/"><!-- dominio escolhido em 25/08, disponivel; registro pendente -->
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://abonanato.com.br/">
 <meta property="og:title" content="Ginecologista e obstetra em BH · Dra. Aline Bonanato">
-<meta property="og:description" content="Saúde e estética íntima em Belo Horizonte. Professora de ginecologia na Faculdade de Ciências Médicas e corpo clínico do Mater Dei. CRM-MG 75153 · RQE 50466.">
+<meta property="og:description" content="Ginecologista e obstetra em Belo Horizonte. Pré-natal e parto no Mater Dei, laser e estética íntima, contracepção e menopausa. Professora na FCMMG. CRM-MG 75153 · RQE 50466.">
 <meta property="og:image" content="https://abonanato.com.br/assets/og-aline-1200x630.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Dra. Aline Bonanato · Ginecologia e obstetrícia · RQE 50466 · Belo Horizonte">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Ginecologista e obstetra em BH · Dra. Aline Bonanato">
-<meta name="twitter:description" content="Saúde e estética íntima em Belo Horizonte. Professora de ginecologia na Faculdade de Ciências Médicas e corpo clínico do Mater Dei. CRM-MG 75153 · RQE 50466.">
+<meta name="twitter:description" content="Ginecologista e obstetra em Belo Horizonte. Pré-natal e parto no Mater Dei, laser e estética íntima, contracepção e menopausa. Professora na FCMMG. CRM-MG 75153 · RQE 50466.">
 <meta name="twitter:image" content="https://abonanato.com.br/assets/og-aline-1200x630.png">
 <meta name="theme-color" content="#F7EDE8">
 
@@ -201,6 +201,9 @@
   .porta h3{font-family:var(--serif);font-weight:400;font-size:clamp(21px,5vw,24px);color:var(--vinho);margin:0 0 10px;}
   .porta p{font-size:16px;line-height:1.6;color:var(--tinta-soft);margin:0 0 var(--s5);text-wrap:pretty;}
   .porta p:last-child{margin-bottom:0;}
+  .porta .lista{list-style:none;margin:0;padding:var(--s3) 0 0;border-top:1px solid var(--linha);
+    display:flex;flex-wrap:wrap;gap:4px 0;font-size:14.5px;font-weight:700;line-height:1.5;color:var(--terra-texto);}
+  .porta .lista li:not(:last-child)::after{content:"\00B7";margin:0 7px;color:var(--coral-texto);}
   .porta .ir{display:inline-flex;align-items:center;gap:8px;color:var(--coral-texto);font-weight:700;font-size:15px;}
   .porta .ir::after{content:"→";transition:transform .18s cubic-bezier(.22,1,.36,1);}
   a.porta:focus-visible{border-radius:16px;}
@@ -262,14 +265,15 @@
   details[open] summary::after{transform:rotate(45deg);}
   details .a{padding:0 36px 20px 0;max-width:var(--medida);color:var(--tinta-soft);font-size:16px;line-height:1.7;}
 
-  /* ===== depoimentos: bloco 6, ainda sem conteudo real ===== */
-  .depo{max-width:660px;margin-top:var(--s5);border-top:1px solid var(--linha);padding-top:var(--s5);}
-  .depo p{max-width:var(--medida);font-size:16px;line-height:1.68;color:var(--tinta-soft);}
-  .depo p + p{margin-top:var(--s3);}
+  /* ===== prova: relatos de parto embedados do Instagram ===== */
+  .relatos{display:grid;gap:var(--s5);margin-top:var(--s6);}
+  .relato{margin:0;background:var(--creme);border:1px solid var(--linha-card);border-radius:16px;overflow:hidden;}
+  .relato iframe{display:block;width:100%;height:560px;border:0;background:var(--creme);}
+  .relato figcaption{padding:var(--s3) var(--s4) var(--s4);font-size:14.5px;line-height:1.5;color:var(--tinta-soft);}
 
   /* faixa de ambiente: respiro de imagem entre dois blocos de texto.
      e full-bleed de proposito, e a unica coisa da pagina que encosta na borda. */
-  .faixa img{width:100%;height:clamp(190px,26vw,320px);object-fit:cover;}
+  .faixa img{width:100%;height:clamp(200px,30vw,400px);object-fit:cover;object-position:center;}
 
   /* bloco tecnico com o aparelho ao lado: publico de decisao quer ver o equipamento */
   .comfoto .lado{margin-top:var(--s5);border-radius:18px;overflow:hidden;}
@@ -337,7 +341,8 @@
     .porta-cta{text-align:center;}
     .sobre .grid{display:grid;grid-template-columns:.82fr 1.18fr;gap:clamp(32px,4.5vw,56px);align-items:start;}
     .sobre .foto{margin-bottom:0;}
-    .metodo .itens{grid-template-columns:1fr 1fr;gap:clamp(24px,3.5vw,40px) clamp(28px,4vw,48px);}
+    .metodo .itens{grid-template-columns:repeat(3,1fr);gap:clamp(24px,3.5vw,40px) clamp(28px,4vw,48px);}
+    .relatos{grid-template-columns:1fr 1fr;gap:var(--s6) clamp(28px,4vw,56px);}
     .local{grid-template-columns:repeat(2,1fr);gap:clamp(28px,4vw,48px);}
     .passos p{padding:var(--s6) 0;font-size:18px;}
     .comfoto .grid{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(32px,4.5vw,56px);align-items:start;}
@@ -483,6 +488,8 @@
     .chips{margin-top:20px;}
     /* o botao do hero sai: o WhatsApp flutuante ja e o CTA permanente no celular */
     .hero .cta{display:none;}
+    .hero .microcopy{text-align:left;margin-top:18px;}
+    .relato iframe{height:480px;}
 
     /* barra de beneficios: centralizada no celular. balance evita a orfa
        ("MG" sozinho na segunda linha) que o texto centralizado deixa exposta.
@@ -515,13 +522,14 @@
   <div class="wrap">
     <p class="hero-reg">CRM-MG 75153 · RQE 50466</p>
     <div class="hero-copy">
-      <h1>Saúde e estética íntima pelas suas fases de vida. <span class="h1-sub">Com ciência, confiança e conforto.</span></h1>
+      <h1>Saúde e estética íntima pelas suas fases de vida. <span class="h1-sub">Com ciência, sem&nbsp;tabu e ao seu lado.</span></h1>
       <ul class="creds">
         <li>Professora na FCMMG</li>
         <li>Corpo clínico do Mater Dei</li>
       </ul>
-      <p class="lead">Vamos juntas, da primeira consulta ao pós-parto, e da contracepção à menopausa.</p>
+      <p class="lead">Vamos juntas: da primeira consulta ao pós-parto, e da contracepção à menopausa.</p>
       <button class="cta" data-wa><svg class="wa" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3C9.4 3 4 8.4 4 15c0 2.1.6 4.2 1.6 6L4 29l8.2-1.5c1.8.9 3.7 1.4 5.8 1.4 6.6 0 12-5.4 12-12S22.6 3 16 3z"/></svg>Marcar consulta</button>
+      <p class="microcopy">Agende pelo WhatsApp em qualquer horário.</p>
     </div>
     <div class="hero-panel">
       <img class="pimg" src="fotos/aline-hero.jpg" srcset="fotos/aline-hero-390.jpg 800w, fotos/aline-hero.jpg 1080w" sizes="(max-width:820px) 100vw, 50vw" width="1080" height="771" alt="Dra. Aline Bonanato no consultório" loading="eager" fetchpriority="high">
@@ -546,19 +554,42 @@
     <div class="portas">
       <div class="porta" id="porta-parto" tabindex="-1">
         <h3>Parto humanizado</h3>
-        <p>Pré-natal e parto com a mesma médica, do começo ao fim. Partos no Hospital Mater Dei.</p>
+        <p>Deu positivo, e junto veio alegria, medo e um monte de dúvida. Tudo isso é normal. Pré-natal e parto com a mesma médica, do começo ao fim, no Mater Dei Contorno: "informação acalma e prepara".</p>
+        <ul class="lista">
+          <li>Pré-natal</li>
+          <li>Parto normal e cesárea</li>
+          <li>Hora de ouro</li>
+          <li>Pós-parto e DIU depois do parto</li>
+        </ul>
       </div>
       <div class="porta" id="porta-laser" tabindex="-1">
         <h3>Laser íntimo</h3>
-        <p>Ressecamento, dor na relação, perda de urina ao tossir ou correr, incômodo que sobrou do parto. Tem nome, tem causa e tem o que fazer. O laser é uma das opções, e não serve pra toda queixa.</p>
+        <p>Ressecamento, dor na relação, escapa xixi quando você tosse ou corre, um incômodo que sobrou do parto ou chegou com a menopausa. Sentir dor não é normal: tem nome, tem causa e tem o que fazer. O laser é uma das opções, e não serve pra toda queixa.</p>
+        <ul class="lista">
+          <li>Ressecamento na menopausa</li>
+          <li>Dor na relação</li>
+          <li>Escape de urina leve</li>
+          <li>Queixa que sobrou do parto</li>
+        </ul>
       </div>
       <div class="porta" id="porta-estetica" tabindex="-1">
         <h3>Estética íntima</h3>
-        <p>Volume, flacidez, assimetria ou cicatriz que incomoda quando você se olha ou na relação. Se incomoda, já é motivo pra perguntar. A conversa começa pelo que dá pra fazer, pelo que não dá, e pelo que não precisa ser feito.</p>
+        <p>Volume, flacidez, assimetria ou uma cicatriz que incomoda quando você se olha ou na relação. "Aceitar a sua vulva como ela é, sem comparações, é um ato de autoconhecimento e amor próprio." Perguntar também é. A conversa começa pelo que dá pra fazer, pelo que não dá, e pelo que não precisa ser feito.</p>
+        <ul class="lista">
+          <li>Avaliação primeiro, sempre</li>
+          <li>Decisão depois, com calma</li>
+          <li>Clareamento íntimo não entra</li>
+        </ul>
       </div>
       <div class="porta" id="porta-contracepcao" tabindex="-1">
         <h3>Contracepção</h3>
-        <p>DIU hormonal, DIU de cobre, implante, e as dúvidas honestas sobre cada um deles. Colocação no consultório.</p>
+        <p>"Não existe um método ideal, e sim o método ideal para você." DIU hormonal, DIU de cobre, implante e pílula, com as dúvidas honestas sobre cada um: dói colocar, engorda, perde efeito, dá pra colocar depois do parto.</p>
+        <ul class="lista">
+          <li>DIU hormonal e DIU de cobre</li>
+          <li>Implante</li>
+          <li>Pílula</li>
+          <li>Colocação e retirada no consultório</li>
+        </ul>
       </div>
     </div>
     <div class="porta-cta"><button class="cta" data-wa><svg class="wa" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3C9.4 3 4 8.4 4 15c0 2.1.6 4.2 1.6 6L4 29l8.2-1.5c1.8.9 3.7 1.4 5.8 1.4 6.6 0 12-5.4 12-12S22.6 3 16 3z"/></svg>Marcar consulta</button></div>
@@ -569,15 +600,15 @@
   <div class="wrap">
     <div class="grid">
       <div class="foto">
-        <img src="fotos/ph-sobre.jpg" width="900" height="720" loading="lazy"
-             alt="PLACEHOLDER: Dra. Aline Bonanato no consultório da Clínica Vitti">
+        <img src="fotos/aline-sobre.jpg" width="900" height="720" loading="lazy"
+             alt="Dra. Aline Bonanato com a testa encostada na de uma paciente em trabalho de parto, no Mater Dei">
       </div>
       <div>
         <span class="rot">Por que a Dra. Aline</span>
-        <h2>Lorem ipsum dolor sit amet.</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+        <h2>Obstetra vem do latim e quer dizer "ficar ao lado de".</h2>
+        <p>Sou ginecologista e obstetra, professora na Faculdade de Ciências Médicas de Minas Gerais, e faço parte do corpo clínico do Mater Dei. Acredito em acolher as fragilidades, exaltar a força, respeitar limites, e transmitir confiança e carinho com um simples olhar. Para mim, essa é a real tradução de "estar ao lado de".</p>
+        <p>Na minha consulta, a primeira coisa é dar nome ao que você sente. Dor na relação, ressecamento, escape de urina, uma vulva que te incomoda: sentir dor não é normal, e "coisa da idade" quase sempre tem nome, tem causa e tem o que fazer. E cada caso é único: o que valeu pra sua amiga pode não valer pra você.</p>
+
         <p class="assina">Ginecologia e Obstetrícia · CRM-MG 75153 · RQE 50466</p>
       </div>
     </div>
@@ -588,48 +619,71 @@
      ajuda" da Marilia). Mesmo bloco `porque`: o verifica junta vizinhos colados. -->
 <section class="block bg-vinho metodo" data-bloco="porque">
   <div class="wrap">
-    <span class="rot">Métodos</span>
-    <h2>Lorem ipsum dolor sit amet.</h2>
-    <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+    <span class="rot">Na prática</span>
+    <h2>Você sabe o que vai acontecer, passo a passo.</h2>
+    <p class="lead">Em cada etapa, saiba o que precisa para caminhar com serenidade.</p>
     <div class="itens">
       <div class="item">
         <h3>Pré-natal</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        <p>Consultas com tempo pra conversar. Você sai de cada uma sabendo como está, o que os exames mostraram, o que vem a seguir e o que é sinal de procurar atendimento. Sono, azia, medo, sexo na gravidez: tudo é assunto de consulta, porque gravidez não é doença.</p>
       </div>
       <div class="item">
         <h3>Parto</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        <p>A via de parto é decidida com você, pelo que a gestação pede, e explicada antes: parto normal, indução ou cesárea. Depois, o contato na primeira hora, a hora de ouro, é prioridade sempre que as condições da mãe e do bebê permitem.</p>
       </div>
       <div class="item">
-        <h3>Laser</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        <h3>Vida Pós-Parto</h3>
+        <p>Laser, estética, menopausa... Na vida de qualquer mulher se pode ter ressecamento, dor na relação, escape de urina, dentre outros. <b>Conversamos sem tabu</b>. E decidimos o tratamento em conjunto, com a tecnologia e ciência mais atualizada, para o seu objetivo.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- depoimentos (bloco prova): entram quando a Aline mandar os 3 relatos autorizados.
-     Ate la o bloco esta isento no README (tabela de desvios). -->
+<section class="block bg-creme prova" data-bloco="prova">
+  <div class="wrap">
+    <h2>Famílias que acompanhei do pré-natal ao parto</h2>
+    <div class="relatos">
+      <figure class="relato">
+        <iframe src="https://www.instagram.com/p/DE0McaqPBid/embed" loading="lazy" title="Relato no Instagram: Sobre o parto do Theo, com a Bia"></iframe>
+        <figcaption>Indução com balão e trabalho de parto, com a família presente</figcaption>
+      </figure>
+      <figure class="relato">
+        <iframe src="https://www.instagram.com/p/C3r8y3WtRqk/embed" loading="lazy" title="Relato no Instagram: Sobre o pré-natal do Rael, com Luciene e Washington"></iframe>
+        <figcaption>Cesárea marcada, conforme o desejo da mãe durante todo o pré-natal</figcaption>
+      </figure>
+      <figure class="relato">
+        <iframe src="https://www.instagram.com/p/DXb7mvoDvZR/embed" loading="lazy" title="Relato no Instagram: Sobre o parto do Lucas, com Thaís e Beto"></iframe>
+        <figcaption>Indução no fim de um pré-natal que parecia não ter fim</figcaption>
+      </figure>
+      <figure class="relato">
+        <iframe src="https://www.instagram.com/p/DT0z4TbEuSx/embed" loading="lazy" title="Relato no Instagram: Sobre a Aurora e o irmão, com Aline e Renato"></iframe>
+        <figcaption>Segunda gestação acompanhada, dois anos depois da primeira</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
 
 <section class="block bg-nude" data-bloco="faq">
   <div class="wrap duas">
     <h2>O que costumam perguntar</h2>
     <div class="faq">
       <div class="grupo">
-        <details><summary>Preciso levar exames? Posso ir menstruada?</summary><div class="a">Leve o que tiver, mesmo antigo: ajuda a entender a história. Menstruada pode vir. A conversa e a maior parte do exame acontecem do mesmo jeito, e o que depender do ciclo fica pra outro dia.</div></details>
-        <details><summary>O laser serve pra qualquer mulher?</summary><div class="a">Não. Ele é uma opção pra algumas queixas, como ressecamento, dor na relação e perda de urina, e só depois do exame. Tem caso em que outra conduta resolve melhor, e tem caso em que não precisa de nada.</div></details>
-        <details><summary>Não gosto da aparência da minha vulva. Isso é bobagem minha?</summary><div class="a">Não. Se incomoda, é motivo pra perguntar. A conversa começa pelo que dá pra fazer, pelo que não dá, e pelo que não precisa ser feito. A decisão é sua, e vem depois, com calma.</div></details>
-        <details><summary>Você acompanha o parto ou é uma equipe? Em qual hospital?</summary><div class="a">A Aline acompanha o parto das pacientes que fazem o pré-natal com ela, no Hospital Mater Dei, em Belo Horizonte.</div></details>
-        <details><summary>Parto humanizado quer dizer que você não faz cesárea?</summary><div class="a">Não. Quer dizer que a via de parto é decidida com você, pelo que a gestação pede, e explicada antes. Cesárea com indicação também é parto respeitado.</div></details>
-        <details><summary>Nunca fui a uma ginecologista com quem me sinta à vontade. Como é a primeira consulta?</summary><div class="a">Começa por conversa, com as palavras que você quiser usar. O exame vem depois, explicado antes de acontecer, e nada é feito sem você saber o que é e por quê.</div></details>
+        <details><summary>Nunca fui a uma ginecologista com quem me sinta à vontade. Preciso de algum preparo pra primeira consulta?</summary><div class="a">Não. "Não é necessário nenhum preparo do nosso corpo: nem depilação, nem uma calcinha especial, nada de diferente." Primeiro a conversa, com as palavras que você quiser. O exame vem depois, explicado antes: o especular e o de toque nem sempre são indicados, e isso se discute em cada caso. Pode vir com acompanhante, e ficar sozinha numa parte.</div></details><!-- fonte: DHdlPisOpS- (áudio) -->
+        <details><summary>Quanto custa a consulta? Atende convênio?</summary><div class="a">A consulta é particular, sem convênio. O valor a gente te fala no WhatsApp, junto com o horário: as consultas são às segundas, 13h e 14h, na Clínica Vitti, no Prado. Encaixe fora desse horário também se combina por lá.</div></details><!-- fonte: operacional, Felipe 09/09/2026 -->
+        <details><summary>Você acompanha o parto ou é uma equipe? Em qual hospital?</summary><div class="a">Eu acompanho o parto de quem faz o pré-natal comigo, no Mater Dei Contorno. O plano é que quem está com você na consulta esteja com você na sala. Se algum imprevisto me impedir, você fica sabendo e a cobertura é combinada antes. Depois, o contato na primeira hora, a hora de ouro, é prioridade sempre que as condições da mãe e do bebê permitem.</div></details><!-- fonte: operacional; obstetricia_17 -->
+        <details><summary>Parto humanizado quer dizer que você não faz cesárea?</summary><div class="a">Não. Quer dizer que a via de parto é decidida com você, pelo que a gestação pede, e explicada antes. Já acompanhei parto na banqueta, indução com balão e cesárea marcada pelo desejo da mãe durante todo o pré-natal. "Cada corpo e cada bebê têm seu próprio ritmo."</div></details><!-- fonte: DE0McaqPBid; DXb7mvoDvZR; C3r8y3WtRqk; DJo-Ge4OAFm -->
+        <details><summary>Tenho ressecamento e dor na relação. O laser resolve?</summary><div class="a">"Não é normal sentir dor na hora da relação", e ressecamento tem nome: pode ser atrofia, síndrome geniturinária da menopausa, vaginismo, uma cicatriz. Tratamento tem vários: "hidratante, uso de lubrificante, tratamento hormonal, local ou sistêmico, e tratamento a laser". Qual é o melhor pra você só a consulta diz. O laser é uma das opções, e não serve pra toda queixa.</div></details><!-- fonte: DAs60AWOPuJ; DQuhiIFkt4V (áudio) -->
+        <details><summary>O laser dói? É perigoso? O efeito dura pra sempre?</summary><div class="a">"O procedimento é bem tolerado. Pode haver leve desconforto, mas geralmente é feito sem necessidade de anestesia e dura poucos minutos." Com ginecologista capacitada e equipamento regulamentado pela Anvisa o risco cai, mas existe: ardência, e queimadura em casos raros. A indicação, os limites e os riscos a Aline explica na consulta. Os resultados têm duração variável, geralmente de 12 a 18 meses, com manutenção conforme orientação médica.</div></details><!-- fonte: DQ6cVTLDujo -->
+        <details><summary>Não gosto da aparência da minha vulva. Isso é bobagem minha?</summary><div class="a">Não. "Cada vulva é única. Não existe um único modelo de vulva saudável ou bonita." Se incomoda, é motivo pra perguntar. Na consulta a gente vê se o incômodo é físico, como atrito com a roupa ou dor na relação, ou de aparência, e o que existe pra cada caso. A decisão é sua, e vem depois, com calma.</div></details><!-- fonte: DCrVYojuchr; DNnW1mqOQ43 -->
+        <details><summary>Dói colocar DIU? Coloca no consultório?</summary><div class="a">"O procedimento pode ser realizado no consultório sob anestesia local, no colo uterino, ou no bloco cirúrgico com sedação. A Aline costuma descrever como três cólicas curtas, uma em cada etapa. A dor varia de pessoa pra pessoa e existe manejo: ela conversa sobre isso antes." O passo a passo você ouve antes, na consulta. E qual DIU, ou se é DIU mesmo: "não existe um método ideal, e sim o método ideal para você".</div></details><!-- fonte: DRNbA87Eqi6; DDrxHutO0hE -->
       </div>
     </div>
   </div>
 </section>
 
 <section class="faixa" data-bloco="local">
-  <img src="fotos/ph-faixa.jpg" width="1600" height="620" loading="lazy"
-       alt="PLACEHOLDER: consultório da Clínica Vitti, sem paciente">
+  <img src="fotos/aline-faixa.jpg" width="1600" height="620" loading="lazy"
+       alt="Dra. Aline Bonanato sentada no consultório da Clínica Vitti, em Belo Horizonte">
 </section>
 
 <section class="block bg-nude" data-bloco="local">
@@ -639,12 +693,12 @@
       <div class="box">
         <span class="lbl">Consultório</span>
         <p><b>Clínica Vitti</b><br>Av. do Contorno, 9787, 1º andar, Prado<br>Belo Horizonte, MG</p>
-        <p>Consultas às segundas-feiras, com hora marcada.</p>
+
       </div>
       <div class="box">
         <span class="lbl">Parto e internação</span>
         <p><b>Hospital Mater Dei Contorno</b><br>Av. do Contorno, 9000, Barro Preto<br>Belo Horizonte, MG</p>
-        <p>Para as pacientes que fazem o pré-natal comigo.</p>
+
       </div>
     </div>
   </div>
@@ -683,7 +737,7 @@
   </button>
 </div>
 
-<!-- ===== widget WhatsApp (canônico builder/components/widget-whatsapp, tema Aline) ===== -->
+<!-- ===== widget WhatsApp (canônico external/doctors/_shared/components/widget-whatsapp, tema Aline) ===== -->
 <dialog id="wa-modal" aria-label="Falar pelo WhatsApp">
   <div class="widget">
     <button type="button" class="wa-close" data-wa-close aria-label="Fechar">&#10006;</button>
@@ -699,7 +753,7 @@
           <span class="cred2">Clínica Vitti · Belo Horizonte</span>
         </div>
       </div>
-      <div class="online"><span class="dot"></span>Consultório · segunda a sexta, horário comercial</div>
+      <div class="online"><span class="dot"></span>Respondemos a qualquer horário</div>
       <div class="wbody">
         <div class="lead-line">Qual é a sua pergunta?</div>
         <label class="field">
@@ -737,7 +791,7 @@
 <script>
 (function(){
   var PHONE = '5531997359679';
-  var GREETING = 'Oi! Vim pelo site. Minha pergunta é: ';
+  var GREETING = 'Oi, quero marcar uma consulta com a Dra. Aline, ginecologista';
   // ATRIBUICAO POR GRUPO DE ANUNCIO: uma bolinha por ad group, prefixada na 1a
   // mensagem. O paciente ve so a cor; o atendimento descobre de qual anuncio veio.
   // Mapa injetado do campanhas.json pelo build. Playbook em
