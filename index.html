@@ -826,15 +826,15 @@
     var input=document.getElementById('wa-phone'), valido=waValidPhone(input.value);
     if(!valido){ waErr(input,true); return; }
     var phone=telefoneE164(valido);
+    window.dataLayer=window.dataLayer||[];
+    window.dataLayer.push({event:'lead_whatsapp', user_data:{phone_number:'+'+phone}});
     if(WEBHOOK_URL){ var qq=new URLSearchParams(location.search); var sep=WEBHOOK_URL.indexOf('?')<0?'?':'&'; var qs='phone='+encodeURIComponent(phone)+'&ag='+encodeURIComponent(qq.get('ag')||'')+'&gclid='+encodeURIComponent(qq.get('gclid')||'')+'&gbraid='+encodeURIComponent(qq.get('gbraid')||'')+'&wbraid='+encodeURIComponent(qq.get('wbraid')||''); try{ fetch(WEBHOOK_URL+sep+qs,{method:'POST',keepalive:true}); }catch(e){} }
     window._aline_phone = phone;
     show(s2);
   });
   document.getElementById('wa-back').addEventListener('click', function(){ show(s1); });
   document.getElementById('wa-last-step').addEventListener('click', function(){
-    window.dataLayer=window.dataLayer||[];
-    window.dataLayer.push({event:'lead_whatsapp', user_data:{phone_number:'+'+window._aline_phone}});   // conversao pro GTM/Ads
-    window.location.href=waUrl();
+    window.open(waUrl(), '_blank');
   });
 })();
 </script>
