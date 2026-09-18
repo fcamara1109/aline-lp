@@ -807,19 +807,7 @@
   }
   var WEBHOOK_URL = 'https://n8n.srv1732310.hstgr.cloud/webhook/widget-lead?t=aline'; // coletor n8n → BQ raw.events + aviso (linha da Aline na tabela clients, 05/09/2026)
 
-  // ATRIBUICAO DE CAMPANHA (igual a LP da Marilia): le utm_*/gclid da URL e anexa
-  // ao texto do WhatsApp, pra cada lead chegar com a campanha de origem.
-  function campaignRef(){
-    try{
-      var q = new URLSearchParams(location.search), parts = [];
-      ['utm_campaign','utm_source','utm_medium','utm_content','utm_term'].forEach(function(k){
-        var v = q.get(k); if(v) parts.push(k.replace('utm_','')+'='+v);
-      });
-      var g = q.get('gclid'); if(g) parts.push('gclid='+g);
-      return parts.length ? '\n\n[origem: '+parts.join(' · ')+']' : '';
-    }catch(e){ return ''; }
-  }
-  function waUrl(){ return 'https://api.whatsapp.com/send?phone='+PHONE+'&text='+encodeURIComponent(adGroupEmoji()+GREETING+campaignRef()); }
+  function waUrl(){ return 'https://api.whatsapp.com/send?phone='+PHONE+'&text='+encodeURIComponent(adGroupEmoji()+GREETING); }
 
   var modal=document.getElementById('wa-modal'),s1=document.getElementById('wa-s1'),s2=document.getElementById('wa-s2');
   function show(el){ s1.classList.remove('active'); s2.classList.remove('active'); el.classList.add('active'); }
@@ -838,15 +826,15 @@
     var input=document.getElementById('wa-phone'), valido=waValidPhone(input.value);
     if(!valido){ waErr(input,true); return; }
     var phone=telefoneE164(valido);
-    window._aline_phone = phone;
-    window.dataLayer=window.dataLayer||[];
-    window.dataLayer.push({event:'lead_whatsapp', user_data:{phone_number:'+'+phone}});
     if(WEBHOOK_URL){ var qq=new URLSearchParams(location.search); var sep=WEBHOOK_URL.indexOf('?')<0?'?':'&'; var qs='phone='+encodeURIComponent(phone)+'&ag='+encodeURIComponent(qq.get('ag')||'')+'&gclid='+encodeURIComponent(qq.get('gclid')||'')+'&gbraid='+encodeURIComponent(qq.get('gbraid')||'')+'&wbraid='+encodeURIComponent(qq.get('wbraid')||''); try{ fetch(WEBHOOK_URL+sep+qs,{method:'POST',keepalive:true}); }catch(e){} }
+    window._aline_phone = phone;
     show(s2);
   });
   document.getElementById('wa-back').addEventListener('click', function(){ show(s1); });
   document.getElementById('wa-last-step').addEventListener('click', function(){
-    window.open(waUrl(), '_blank');
+    window.dataLayer=window.dataLayer||[];
+    window.dataLayer.push({event:'lead_whatsapp', user_data:{phone_number:'+'+window._aline_phone}});   // conversao pro GTM/Ads
+    window.location.href=waUrl();
   });
 })();
 </script>
