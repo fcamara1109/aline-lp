@@ -474,10 +474,10 @@
     .hero .wrap{display:flex;flex-direction:column;padding-top:16px;padding-bottom:38px;}
     .hero-reg{display:block;order:0;margin:0 0 13px;font-size:13px;font-weight:800;letter-spacing:.13em;
       text-transform:uppercase;color:var(--terra-texto);}
-    .hero-panel{order:1;margin-top:0;aspect-ratio:7/5;}
-    /* a foto preenche o quadro em vez de ditar a altura dele: retrato vertical
-       cortado no alto da cabeca, sem comer a dobra inteira */
-    .hero-panel .pimg{position:absolute;inset:0;height:100%;object-position:50% 22%;}
+    .hero-panel{order:1;margin-top:0;aspect-ratio:16/9;}
+    /* a foto preenche o quadro em vez de ditar a altura dele: 16:9 corta mais o
+       alto que o pe da foto, para o lead do hero caber acima da barra fixa */
+    .hero-panel .pimg{position:absolute;inset:0;height:100%;object-position:50% 65%;}
     /* nome ja esta no topo e o registro na linha acima: sobre a foto fica so a prova */
     .hero-panel .badge{display:none;}
     .hero-panel .doc{display:flex;}
